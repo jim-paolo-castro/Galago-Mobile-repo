@@ -1,0 +1,70 @@
+$transforms : uppercase lowercase capitalize;
+$align : left right center justify ;
+$style: normal italic oblique initial;
+
+@each $breakpoint, $value in $breakpoints {
+    @include breakpoint(#{$breakpoint}) {
+        @each $transform in $transforms {
+            $suffix : suffix($breakpoint);
+            .text#{$suffix}-#{$transform} {
+                text-transform: #{$transform};
+            }
+        }
+        @each $a in $align {
+            $suffix : suffix($breakpoint);
+            .text#{$suffix}-#{$a} {
+                text-align: #{$a};
+            }
+        }
+    }
+}
+  
+@each $s in $style {
+    .#{$s} {
+        font-style: $s;
+    }
+}
+
+// text color
+@each $color, $value in $colors {
+    .text-#{$color} {
+        color: $value;
+    }
+}
+
+// lists
+.list-reset	{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.list-inside {list-style-position: inside; }
+
+// whitespace & wrapping
+.whitespace-normal { white-space: normal; }
+.whitespace-no-wrap { white-space: nowrap; }
+.whitespace-pre { white-space: pre; }
+.whitespace-pre-line { white-space: pre-line; }
+.whitespace-pre-wrap { white-space: pre-wrap; }
+.break-words { word-wrap: break-word; }
+.break-normal { word-wrap: normal; }
+
+// truncate text
+@for $i from 1 through $truncate-lines-max {
+    // .truncate-text-#{$i} {
+    //     @include truncate-text($i);
+    // }
+    // @supports (-webkit-line-clamp: #{$i}) {
+    .truncate-text-#{$i} {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: #{$i};
+        -webkit-box-orient: vertical;
+        // height: auto;
+        // &:after {
+        //   display: none;
+        // }
+    }
+  //}
+}

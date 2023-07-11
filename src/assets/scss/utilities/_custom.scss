@@ -1,0 +1,83 @@
+// YOUR CUSTOM UTILITIES HERE
+
+
+// div[class*="container-"] {
+//   min-height: calc(100vh - 50px);
+//   // padding-bottom: 30px;
+// }
+
+.img-bg-container {
+  background-repeat: no-repeat; 
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: calc(100vh - 50px);
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    // background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkRDMDBGQ0Y5NEI4NjExRTM5RTg2QTY1RTUyQjIxNEQyIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkRDMDBGQ0ZBNEI4NjExRTM5RTg2QTY1RTUyQjIxNEQyIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6REMwMEZDRjc0Qjg2MTFFMzlFODZBNjVFNTJCMjE0RDIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6REMwMEZDRjg0Qjg2MTFFMzlFODZBNjVFNTJCMjE0RDIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6C0EmkAAAAGElEQVR42mJiYGD4DwQMTECCEchhAAgwAEcGBv9dngKPAAAAAElFTkSuQmCC);
+    // background-repeat: repeat; 
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 100%;
+    height: 100%;
+  }
+  .content {
+    padding: 0 16px;
+    position: relative;
+    z-index: 2;
+  }
+}
+
+img,
+picture {
+  width: 100%;
+  height: 100%;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.card {
+  padding: 12px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+}
+
+.border-grey {
+  border-radius: 20px;
+  border: 1px solid gainsboro;
+}
+
+.text-grey-reg{
+  color: #707070;
+  font-family: 'lato-regular';
+}
+.text-grey-bold{
+  color: #707070;
+  font-family: 'lato-bold';
+}
+
+.text-dark-heavy{
+  color: #47525E;
+  font-family: 'lato-heavy';
+}
+
+
+.text-reg{
+  font-family: 'lato-regular';
+}
+
+.text-darkish{
+  color: #47525E;
+}
+
+.no-box-shadow{
+  box-shadow: none !important;
+  border: 1px solid #eaeaea !important;
+}
+
+

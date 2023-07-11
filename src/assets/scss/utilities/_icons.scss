@@ -1,0 +1,17 @@
+
+// custom icons
+span[class*="custom-icon-"] {
+  mask-size: contain;
+  mask-position: 50% 50%;
+  mask-repeat: no-repeat;
+  background: currentColor;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+}
+$icons-uri: $icons-array-uri;
+@each $icon, $data in $icons_uri {
+  span[class*="custom-icon-#{$icon}"] {
+    mask-image: url(#{$data});
+  }
+}

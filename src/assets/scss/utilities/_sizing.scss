@@ -1,0 +1,11 @@
+// font sizing
+@each $breakpoint, $value in $breakpoints {
+    @for $i from 1 through $max-size-value {
+        @include breakpoint(#{$breakpoint}) {
+            $suffix : suffix($breakpoint);
+            .font#{$suffix}-#{$i} {
+                font-size: #{$i}px;
+            }
+        }
+    }
+}

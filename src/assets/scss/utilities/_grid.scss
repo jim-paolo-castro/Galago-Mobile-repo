@@ -1,0 +1,41 @@
+.container {
+  @include make-container;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: $col-gutter-xs * -1;
+  margin-right: $col-gutter-xs * -1;
+  @include breakpoint(md) {
+    margin-left: $col-gutter * -1;
+    margin-right: $col-gutter * -1;
+  }
+}
+
+// .col-
+@each $breakpoint, $value in $breakpoints {
+  @include breakpoint(#{$breakpoint}) {
+    $suffix: suffix($breakpoint);
+    @for $i from 1 through $col-count {
+      .col#{$suffix}-#{$i} {
+        max-width: (100% / $col-count) * $i;
+        flex: 0 0 (100% / $col-count) * $i;
+        padding-left: $col-gutter-xs;
+        padding-right: $col-gutter-xs;
+        @include breakpoint(md) {
+          padding-left: $col-gutter;
+          padding-right: $col-gutter;
+        }
+      }
+      .col#{$suffix}-offset-#{$i} {
+        margin-left: (100% / 12) * $i;
+      }
+      .col#{$suffix}-auto {
+        max-width: max-content;
+      }
+    }
+  }
+}

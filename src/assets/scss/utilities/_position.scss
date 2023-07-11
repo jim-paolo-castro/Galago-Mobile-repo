@@ -1,0 +1,11 @@
+.absolute-vertical { @include center(vertical); }
+.absolute-horizontal { @include center(horizontal); }
+.absolute-center { @include center(both); }
+.flex-center { @include flex-center(both); }
+.flex-horizontal { @include flex-center(horizontal); }
+.flex-vertical { @include flex-center(vertical); }
+
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }

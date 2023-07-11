@@ -1,0 +1,12 @@
+$displays: block none flex inline-flex inline inline-block;
+
+@each $breakpoint, $value in $breakpoints {
+  @include breakpoint(#{$breakpoint}) {
+    @each $display in $displays {
+      $suffix : suffix($breakpoint);
+      .#{$display}#{$suffix} {
+        display: #{$display};
+      }
+    }
+  }
+}

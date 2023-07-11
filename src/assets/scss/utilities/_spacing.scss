@@ -1,0 +1,45 @@
+$sides: (top, bottom, left, right);
+
+@each $breakpoint, $value in $breakpoints {
+  @for $i from 0 through $max-space-value {
+    @include breakpoint(#{$breakpoint}) {
+      $suffix : suffix($breakpoint);
+      @each $side in $sides {
+        .m#{str-slice($side, 0, 1)}#{$suffix}-#{$i} {
+          margin-#{$side}: #{$i}px !important;
+        }
+        .p#{str-slice($side, 0, 1)}#{$suffix}-#{$i} {
+          padding-#{$side}: #{$i}px !important;
+        }
+      }
+      .m#{$suffix}-#{$i} { margin: #{$i}px !important; }
+      .mx#{$suffix}-#{$i} {
+        margin-left: #{$i}px !important;
+        margin-right: #{$i}px !important;
+      }
+      .my#{$suffix}-#{$i} {
+        margin-top: #{$i}px !important;
+        margin-bottom: #{$i}px !important;
+      }
+      .p#{$suffix}-#{$i} { padding: #{$i}px !important; }
+      .px#{$suffix}-#{$i} {
+        padding-left: #{$i}px !important;
+        padding-right: #{$i}px !important;
+      }
+      .py#{$suffix}-#{$i} {
+        padding-top: #{$i}px !important;
+        padding-bottom: #{$i}px !important;
+      }
+    }
+  }
+  @include breakpoint(#{$breakpoint}) { 
+    $suffix : suffix($breakpoint);
+    .mx#{$suffix}-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .ml#{$suffix}-auto {
+      margin-left: auto;
+    }
+  }
+}

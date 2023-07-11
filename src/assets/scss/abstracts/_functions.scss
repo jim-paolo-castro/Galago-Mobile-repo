@@ -1,0 +1,13 @@
+// SASS FUNCTIONS
+
+@function suffix($breakpoint) {
+  @if ($breakpoint == "xs") {
+    @return "";
+  } @else {
+    @return unquote("-" + $breakpoint);
+  }
+}
+
+
+// -------------------------
+// YOUR CUSTOM FUNCTIONS HERE

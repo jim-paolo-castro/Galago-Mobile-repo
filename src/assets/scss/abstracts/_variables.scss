@@ -1,0 +1,57 @@
+// GLOBAL VARIABLES
+// You can add new variable or edit default values
+
+$breakpoints : (
+  xs: 0,
+  sm : 576px,
+  md : 768px,
+  lg : 992px,
+  xl  : 1200px,
+  xxl  : 1400px,
+);
+
+$container : (
+    xs: calc(100% - 30px),
+    sm : calc(100% - 40px),
+    md : calc(100% - 50px),
+    lg : calc(100% - 60px),
+    xl : 1200px,
+);
+
+$colors: (
+  primary:    var(--ion-color-primary, #1FB6FF),
+  secondary:  var(--ion-color-secondary, #0cd1e8),
+  tertiary:     var(--ion-color-tertiary, #7044ff),
+  dark:       var(--ion-color-dark, #212121),
+  medium: var(--ion-color-medium, #989aa2),
+  light:      var(--ion-color-light, #f4f5f8),
+);
+
+$col-gutter: 15px;
+$col-gutter-xs: 5px;
+$col-count: 12;
+$max-space-value: 100;
+$max-size-value: 100;
+$truncate-lines-max: 5;
+$icons-array-uri : (
+  fb: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABHNCSVQICAgIfAhkiAAAAXtJREFUSInllT1SAkEQhb83YGAkN1BPoJ5AAtd40zUztlz0Bt4AhAtgAmRKZgEB3oAj4A0wMhBpA7RKZKBk+An0hf1m5qvu6ekRnzpNKjHigBXLYJAZDZuPjes+gPJxMbe1nb2XyK8aNgm283YtrSpKKiWJwjphX3Kj4b5DxJuAAQyViZ1gd1NAJ+Wyyx9jTYMHG6n/PSpH1ZdMMNCMFzPiTiPt+vwoKfeRpoAuGIjddBqXXtg8BQM79bQ0zxfK+eJBJTWzp5+xk6R85aCAtDdv7wqaZiwnFX+1Lux49cL2BQIlBqHAX5fUjBewcWaiP+1P3quk46WAEqVWLb2Z5bfr6cTwj5Jy1wcNfhahWiNQh0sBzfA+ZJ/ycTEnsePzFrnDQnRWOcYYILtr19Lqdz9Kyl2QjRebN7uFgACCQwSgqUkz2SCaecZfapp/CxyPrA0CJVv41w6W0XNGZuZ8XCnL7KlVv3xw7dpFz3BHYM11lNfg2Yzbt9f3GOADcfN3AtbGkzoAAAAASUVORK5CYII=',
+  twitter: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABHNCSVQICAgIfAhkiAAAAjZJREFUSIntll2OEkEUhc8pwMRAN/04CZDgCuwdiCsQN8DACsQVyOzAHVTjBmZcAbgCmRXABEl8hOo28wDW9YEfabChGfBJz1NV9839blVO3Srgvy4snpvgSj9Wc1y8A2wdZBUiI4D9ueRuvreej9ZxZR3WIhQGG2Cla4LQOu1pi9O0sNIn01QCnfRfIO3VoAly9u3arXFTpZoPRWQQifs6DbSswxqV9NIUJsB9ZJ0aACgAyGJRBQCSfoGm52nxjiWhWlWfjjh0aL7mM2FdAQDxG0DSd2iGFW3qR9K8ScsjUbeKN5OGGygAmCM32InwoHBbDkyv0jWpEyfJUt5PGm4AbLm00jV3iVWvnGeJPskRAFCknxY4t7kXa8dugJ4Wz6EZgSw+bR3JGl+7G44ClvYuMLwVMJXrzlEWAPBTDahs4nk6RwJ82Z4rAJi0CgMB7v8GEGDMkGpTiVVNiMwujrNxc8V6aUlHPpUNCLy8CE1kNm4WY01E7cYQ+LA8BhfgER93v2W3Jz+QHzli+pc4GgJ5iKy7B4ytcNri1Cqm75GHgGTnT5fA3pZOGm4Ai7cCeTiD1123sl0dvIAr2tRFoXOiiT6Pr93Exr+3wrWu9GMV5KsTYd3QOs1DAZsVlnTkMyNFiPUhrJE4dj3FtLwRinsm2QN6WryCMm0K2k90Z3duc53t98tB4HrgafHymbBOQfvYNi7boNwt7LMgLWgPuKuyDmuEeKLEBwBY1QeACIXBKQ+tf0+/AClA4WJM9oCCAAAAAElFTkSuQmCC',
+  menu: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAATCAYAAAB/TkaLAAAA0klEQVQ4T7XTMQtBURjG8XsGWZSFxWJRvobFqpQymQySL0QpymhSvowySHQLixiU4fo/6pYy3ueeeuucW/d3nnPfe0KSJK0oiqZUk8o6dgCTAHpgUs+q/bx/EnrlQcWI3oT2AedUyQA/McZBEHDBhYYQ3l/UPfJBOXqRpAOqYUi8x1ipUWsmPQOYEmuhL1ZK6xoPoRu0jkvE2QrV/zmiqgZYF2mWT/cN6f6IfG4U37TLVguqbEh9xxiqURdTk9JMsdAzq5ohZUochbZZLU1wrON/AP+/Sx9rV6IrAAAAAElFTkSuQmCC'
+  );
+
+// OVERRIDE BOOTSTRAP VARIABLES
+// $spacers: (
+//   15: 15px
+// );
+$container-max-widths: (
+  xl: 1200px
+);
+
+$primary-color : #1FB6FF
+
+// :root {
+//   --primary: red;
+//   --customcolor: violet;
+// }
+// -------------------------
+// YOUR CUSTOM VARIABLES HERE

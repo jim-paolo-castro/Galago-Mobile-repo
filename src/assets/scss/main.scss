@@ -1,0 +1,25 @@
+// ABSTRACTS
+@import './abstracts/functions';
+@import './abstracts/mixins';
+@import './abstracts/variables';
+
+
+// UTILITIES
+@import './utilities/backgrounds';
+@import './utilities/display';
+@import './utilities/flex';
+@import './utilities/float';
+@import './utilities/grid';
+@import './utilities/icons';
+@import './utilities/image';
+@import './utilities/interactivity';
+@import './utilities/position';
+@import './utilities/sizing';
+@import './utilities/table';
+@import './utilities/text';
+@import './utilities/spacing';
+@import './utilities/custom';
+
+.swiper-slide {
+  display: block;
+}

@@ -1,0 +1,13 @@
+
+$floats: left right none;
+
+@each $breakpoint, $value in $breakpoints {
+  @include breakpoint(#{$breakpoint}) {
+    @each $float in $floats {
+      $suffix : suffix($breakpoint);
+      .float#{$suffix}-#{$float} {
+        float: #{$float};
+      }
+    }
+  }
+}
