@@ -1,6 +1,7 @@
 $transforms : uppercase lowercase capitalize;
 $align : left right center justify ;
 $style: normal italic oblique initial;
+$weight: 500 600 700 800;
 
 @each $breakpoint, $value in $breakpoints {
     @include breakpoint(#{$breakpoint}) {
@@ -29,6 +30,13 @@ $style: normal italic oblique initial;
 @each $color, $value in $colors {
     .text-#{$color} {
         color: $value;
+    }
+}
+
+// text weight
+@each $w in $weight {
+    .text-weight-#{$w} {
+        font-weight: $w;
     }
 }
 
