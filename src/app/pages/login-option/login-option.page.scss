@@ -1,0 +1,28 @@
+ion-button.skip-button {
+    text-transform: none;
+    text-decoration: underline;
+}
+
+.login-btns{
+    margin: auto;
+    width: 90%;
+
+    ion-button {
+        height: 50px;
+        text-transform: none;
+        --border-width: 1px;
+        --border-radius: 12px;
+    }
+
+    .login-icons{
+        position: absolute;
+        left: -10px;
+    }
+}
+  
+.footer-text{
+    position: absolute;
+    bottom: 50px;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
