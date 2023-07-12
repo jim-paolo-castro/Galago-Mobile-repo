@@ -1,6 +1,9 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
-
+@font-face {
+  font-family: 'satoshi';
+  src: url('../assets/fonts/satoshi/Satoshi-Regular.otf');
+}
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
@@ -10,6 +13,8 @@
 	--ion-color-primary-contrast-rgb: 255,255,255;
 	--ion-color-primary-shade: #016170;
 	--ion-color-primary-tint: #1a7d8c;
+
+  --ion-font-family: 'satoshi'
 
   /** secondary **/
   --ion-color-secondary: #3dc2ff;
@@ -75,6 +80,8 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
+
+
 
 @media (prefers-color-scheme: dark) {
   /*
@@ -234,3 +241,7 @@
     --ion-card-background: #1e1e1e;
   }
 }
+
+
+
+
