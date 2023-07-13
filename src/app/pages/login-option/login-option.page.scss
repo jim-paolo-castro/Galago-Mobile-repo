@@ -14,10 +14,30 @@ ion-button.skip-button {
         --border-radius: 12px;
     }
 
-    .login-icons{
-        position: absolute;
-        left: -10px;
+    ion-button:nth-child(1) img { //google
+        width: 24px;
     }
+
+    ion-button:nth-child(2) img{ //facebook
+        width: 24px;
+    }
+
+    ion-button:nth-child(3) img{ //apple
+        width: 18px;
+        left: -3px;
+    }
+
+    ion-button:nth-child(5) img{ //email
+        width: 20px;
+        left: -3px;
+    }
+
+    img{
+        height: auto;
+        position: absolute;
+        left: -5px;
+    }
+
 }
   
 .footer-text{

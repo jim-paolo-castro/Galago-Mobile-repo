@@ -22,6 +22,7 @@ export class LoginEmailPage implements OnInit {
     setTimeout(() => {
       console.log(this.email)
       if (this.email == 'test@gmail.com') this.router.navigate(['/login-password'])
+      else if(this.email =='') this.router.navigate(['/email-confirmation'])
       else {
         this.isLoading = false
         this.hasError = true

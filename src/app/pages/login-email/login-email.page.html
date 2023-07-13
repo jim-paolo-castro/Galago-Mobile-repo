@@ -11,16 +11,16 @@
     <span class="font-28 text-weight-700">What’s your email?</span>
     <span class="font-12 text-medium mt-5">Enter the email address you’d like to use to continue</span>
 
-    <ion-input 
-      [(ngModel)]="email" 
-      type="email"
-      class="for-email mt-30" 
-      label="Email Address" 
-      label-placement="floating"
-      helperText="Enter a valid email"
-      errorText="Invalid email"
-      fill="outline" ></ion-input>
-    <span *ngIf="hasError">Oppps may error</span>
+      <ion-input 
+        [(ngModel)]="email" 
+        type="email"
+        class="for-email mt-30" 
+        label="Email Address" 
+        label-placement="floating"
+        helperText="Enter a valid email"
+        errorText="Invalid email"
+        fill="outline" ></ion-input>
+      <span *ngIf="hasError">Oppps may error</span>
   </div>
 
  

@@ -1,0 +1,19 @@
+ion-content{
+    --background: var(--ion-color-primary);
+    --padding-bottom: 10px;
+    --padding-end: 20px;
+    --padding-start: 20px;
+    --padding-top: 20px;
+}
+
+
+img{
+    width: 200px;
+}
+
+ion-button{
+    height: 50px;
+    text-transform: none;
+    --border-width: 1px;
+    --border-radius: 12px;
+}

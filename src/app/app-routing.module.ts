@@ -18,7 +18,15 @@ const routes: Routes = [
   {
     path: 'login-password',
     loadChildren: () => import('./pages/login-password/login-password.module').then( m => m.LoginPasswordPageModule)
+  },  {
+    path: 'email-confirmation',
+    loadChildren: () => import('./pages/email-confirmation/email-confirmation.module').then( m => m.EmailConfirmationPageModule)
   },
+  {
+    path: 'create-account',
+    loadChildren: () => import('./pages/create-account/create-account.module').then( m => m.CreateAccountPageModule)
+  },
+
 ];
 
 @NgModule({
