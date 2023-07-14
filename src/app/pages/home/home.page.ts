@@ -10,7 +10,8 @@ export class HomePage implements OnInit {
   menu = [
     {
       name:'Flights',
-      icon: 'airplane'
+      icon: 'airplane',
+      route: 'flight'
     },
     {
       name:'Hotels',
