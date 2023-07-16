@@ -11,21 +11,27 @@ export class HomePage implements OnInit {
     {
       name:'Flights',
       icon: 'airplane',
-      route: 'flight'
+      route: 'book-a-flight'
     },
     {
       name:'Hotels',
-      icon: 'building-4'
+      icon: 'building-4',
+      route: ''
+
     },
 
     {
       name:'ChatGPT',
-      icon: 'building-4'
+      icon: 'building-4',
+      route: ''
+
     },
 
     {
       name:'Insurance',
-      icon: 'building-4'
+      icon: 'building-4',
+      route: ''
+
     },
   ]
   constructor() { }

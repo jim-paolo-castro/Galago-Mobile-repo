@@ -1,13 +1,46 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>book-a-flight</ion-title>
+    <ion-buttons color="primary" slot="start">
+      <ion-back-button color="primary"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">book-a-flight</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+<ion-content>
+
+  <div class="flex flex-col main-div">
+
+    <span class="font-28 text-weight-700">Book a Flight</span>
+    <span class="font-13 text-medium mt-8">Search and discover flights from 700+ airlines! *</span>
+
+    <div class="flex flex-row mt-26">
+      <ion-button class="mr-8" fill="outline" size="small" active>One-way</ion-button>
+      <ion-button class="mr-8" fill="outline" size="small">Round-trip</ion-button>
+      <ion-button class="mr-8" fill="outline" size="small">Multi-city</ion-button>
+    </div>
+
+    <div class="flex flex-col flights-input">
+
+      <ion-input 
+        class="mt-24 flight-input" 
+        label="Flying from" 
+        label-placement="floating"
+        fill="outline"
+      ></ion-input>
+
+      <ion-input 
+        class="mt-8" 
+        label="Flying to" 
+        label-placement="floating"
+        fill="outline"
+      ></ion-input>
+      
+      <ion-button class="interchange">Balikan</ion-button>
+
+    </div>
+
+
+  </div>
+
 </ion-content>

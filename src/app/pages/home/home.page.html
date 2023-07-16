@@ -8,7 +8,7 @@
 
   <div class="flex flex-row menu-header mt-56 ml-28">
     <div class="flex flex-col flex-center mr-28" *ngFor="let x of menu">
-      <div class="icon-menu flex flex-center">
+      <div class="icon-menu flex flex-center" [routerLink]="'/' + x.route">
         <img [src]="'assets/imgs/' + x.icon + '.png'" alt="">
       </div>
       <span class="flex  mt-10">{{x.name}}</span>
