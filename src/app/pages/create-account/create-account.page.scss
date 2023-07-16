@@ -1,0 +1,21 @@
+ion-content{
+    --padding-bottom: 10px;
+    --padding-end: 20px;
+    --padding-start: 20px;
+    --padding-top: 20px;
+}
+
+.fields-input ion-input{
+    --border-radius: 12px;
+    --border-width: 1px;
+    --background: #fff;
+    // --color: var(--ion-color-dark-tint)
+    // --highlight-color-valid: red;
+     --placeholder-color: #ddd;
+     --placeholder-opacity: 0.6;
+  }
+  
+  ion-button{
+    --border-radius: 10px;
+    text-transform: none;
+  }
