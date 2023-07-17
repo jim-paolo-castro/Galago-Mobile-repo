@@ -23,7 +23,7 @@
     --border-width: 1px;
   }
 
-  .flights-input ion-input{
+  .flights-input ion-input, .date-input ion-input,{
     --border-radius: 12px;
     --border-width: 1px;
     --background: #fff;
@@ -31,6 +31,12 @@
     // --highlight-color-valid: red;
      --placeholder-color: #ddd;
      --placeholder-opacity: 0.6;
+     
+  }
+
+  .date-input ion-input {
+    --padding-start: 40px;
+    // --padding-bottom: 30px;
   }
 
   .interchange{
@@ -40,3 +46,23 @@
     z-index: 100;
     margin-right: 30px;
   }
+
+  .date-input {
+    ion-icon{
+      position: absolute;
+      margin-top: 24px;
+      z-index: 100;
+      margin-left: 12px;
+    }
+  }
+
+  
+ion-button{
+  --border-radius: 10px;
+  text-transform: none;
+}
+
+.footer-btn{
+  position:absolute;
+  bottom: 10;
+}

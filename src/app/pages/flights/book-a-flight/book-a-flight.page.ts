@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookAFlightPage implements OnInit {
 
+  tripType = 'one-way'
+  isLoading = false;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  search() {
+    this.isLoading = true;
+  }
+
+  changeTripType(type: any) {
+    this.tripType = type
   }
 
 }

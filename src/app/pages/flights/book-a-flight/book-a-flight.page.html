@@ -15,9 +15,9 @@
     <span class="font-13 text-medium mt-8">Search and discover flights from 700+ airlines! *</span>
 
     <div class="flex flex-row mt-26">
-      <ion-button class="mr-8" fill="outline" size="small" active>One-way</ion-button>
-      <ion-button class="mr-8" fill="outline" size="small">Round-trip</ion-button>
-      <ion-button class="mr-8" fill="outline" size="small">Multi-city</ion-button>
+      <ion-button class="mr-8" fill="outline" size="small" (click)="changeTripType('one-way')" color="{{tripType == 'one-way' ? 'primary' : 'medium' }}">One-way</ion-button>
+      <ion-button class="mr-8" fill="outline" size="small" (click)="changeTripType('round-trip')" color="{{tripType == 'round-trip' ? 'primary' : 'medium' }}">Round-trip</ion-button>
+      <ion-button class="mr-8" fill="outline" size="small" (click)="changeTripType('multi-city')" color="{{tripType == 'multi-city' ? 'primary' : 'medium' }}">Multi-city</ion-button>
     </div>
 
     <div class="flex flex-col flights-input">
@@ -40,7 +40,52 @@
 
     </div>
 
+    <div class="flex flex-row date-input mt-8">
+      <div class="flex flex-1 mr-2">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-input 
+          label="Departure" 
+          label-placement="floating"
+          fill="outline"
+        ></ion-input>
+      </div>
+
+      <div class="flex flex-1 ml-2">
+        <ion-icon name="calendar-outline" color="{{tripType == 'one-way' ? 'medium' : 'dark' }}"></ion-icon>
+        <ion-input 
+          disabled="{{tripType == 'one-way'}}"
+          label="Return" 
+          label-placement="floating"
+          fill="outline"
+        ></ion-input>
+      </div>
+    </div>
+
+    
+    <div class="flex flex-col mt-8 flights-input">
+      <ion-input 
+        label="Travelers" 
+        label-placement="floating"
+        fill="outline"
+      ></ion-input>
+
+      <ion-input 
+        class="mt-8"
+        label="Preferred Class" 
+        label-placement="floating"
+        fill="outline"
+      ></ion-input>
+    </div>
+
 
   </div>
 
 </ion-content>
+
+
+<div class="mb-20 ml-20 mr-20">
+  <ion-button color="primary" (click)="search()" size="large" expand="full" shape="round">
+    <span *ngIf="!isLoading">Continue</span>
+    <ion-spinner name="dots" *ngIf="isLoading"></ion-spinner>
+  </ion-button>
+</div>
