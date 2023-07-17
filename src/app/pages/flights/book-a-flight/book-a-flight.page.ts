@@ -37,4 +37,24 @@ export class BookAFlightPage implements OnInit {
     this.router.navigate(['/flying-from-to'], params)
   }
 
+  openPage(page: string) {
+    switch (page) {
+      case "departure-date":
+        this.router.navigate(['/select-dates'])
+        break;
+      case "return-date":
+        this.router.navigate(['/select-dates'])
+        break;
+      case "passengers":
+        this.router.navigate(['/passengers-input'])
+        break;
+      case "preferred-class":
+        this.router.navigate(['/preferred-class'])
+        break;
+        
+      default:
+        break;
+    }
+  }
+
 }

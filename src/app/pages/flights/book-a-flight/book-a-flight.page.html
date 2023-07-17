@@ -49,6 +49,7 @@
           label="Departure" 
           label-placement="floating"
           fill="outline"
+          (click)="openPage('departure-date')"
         ></ion-input>
       </div>
 
@@ -59,6 +60,7 @@
           label="Return" 
           label-placement="floating"
           fill="outline"
+          (click)="openPage('return-date')"
         ></ion-input>
       </div>
     </div>
@@ -69,6 +71,7 @@
         label="Travelers" 
         label-placement="floating"
         fill="outline"
+        (click)="openPage('passengers')"
       ></ion-input>
 
       <ion-input 
@@ -76,7 +79,9 @@
         label="Preferred Class" 
         label-placement="floating"
         fill="outline"
+        (click)="openPage('preferred-class')"
       ></ion-input>
+      
     </div>
 
 
