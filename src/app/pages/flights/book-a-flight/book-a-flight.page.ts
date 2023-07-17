@@ -17,10 +17,6 @@ export class BookAFlightPage implements OnInit {
   ngOnInit() {
   }
 
-  search() {
-    this.isLoading = true;
-  }
-
   changeTripType(type: any) {
     this.tripType = type
   }
@@ -55,6 +51,14 @@ export class BookAFlightPage implements OnInit {
       default:
         break;
     }
+  }
+
+  search(){
+    this.isLoading = true;
+    setTimeout(() => {
+      this.router.navigate(['/search-flight-result']);
+      this.isLoading = false
+    }, 2000);
   }
 
 }

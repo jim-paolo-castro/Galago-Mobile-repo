@@ -51,6 +51,14 @@ const routes: Routes = [
     path: 'preferred-class',
     loadChildren: () => import('./pages/flights/preferred-class/preferred-class.module').then( m => m.PreferredClassPageModule)
   },
+  {
+    path: 'search-flight-result',
+    loadChildren: () => import('./pages/search-flight-result/search-flight-result.module').then( m => m.SearchFlightResultPageModule)
+  },
+  {
+    path: 'loader',
+    loadChildren: () => import('./loader/loader.module').then( m => m.LoaderPageModule)
+  },
 
 
 ];
