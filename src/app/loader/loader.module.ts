@@ -4,18 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SelectDatesPageRoutingModule } from './select-dates-routing.module';
+import { LoaderPageRoutingModule } from './loader-routing.module';
 
-import { SelectDatesPage } from './select-dates.page';
-
+import { LoaderPage } from './loader.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SelectDatesPageRoutingModule
+    LoaderPageRoutingModule
   ],
-  declarations: [SelectDatesPage]
+  declarations: [LoaderPage]
 })
-export class SelectDatesPageModule {}
+export class LoaderPageModule {}

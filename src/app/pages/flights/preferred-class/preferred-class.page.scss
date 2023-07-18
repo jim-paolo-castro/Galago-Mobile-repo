@@ -1,0 +1,28 @@
+ion-content {
+    --padding-bottom: 10px;
+    --padding-end: 20px;
+    --padding-start: 20px;
+    --padding-top: 20px;
+  }
+
+  .main-div{
+    margin-top: -24px;
+  }
+
+
+  .preferred-class-div div{
+    border: 1px solid #D9D9D9;
+    border-radius: 12px;
+    padding: 21px 15px;
+    margin-bottom: 12px;
+  }
+
+  .ripple-parent {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .preferred-class-div .selected-class {
+    border: 1.5px solid var(--ion-color-primary);
+    box-shadow: 0px 6px 10px 0px #D9D9D9;
+  }

@@ -1,0 +1,68 @@
+  ion-content {
+    --padding-bottom: 10px;
+    --padding-end: 20px;
+    --padding-start: 20px;
+    --padding-top: 20px;
+  }
+
+  .main-div{
+    margin-top: -24px;;
+  }
+
+// .label-text-wrapper{
+//     margin-top: -3px;
+//     transform: translateY(75%) scale(1);
+// }
+
+
+  ion-button{
+    --border-radius: 12px;
+    text-transform: none;
+    --border-color: #D9D9D9;
+    --color: #333;
+    --border-width: 1px;
+  }
+
+  .flights-input ion-input, .date-input ion-input {
+    --border-radius: 12px;
+    --border-width: 1px;
+    --background: #fff;
+    // --color: var(--ion-color-dark-tint)
+    // --highlight-color-valid: red;
+     --placeholder-color: #ddd;
+     --placeholder-opacity: 0.6;
+     
+  }
+
+  .date-input ion-input {
+    --padding-start: 40px;
+    // --padding-bottom: 30px;
+  }
+
+  .interchange{
+    position: absolute;
+    right: 0;
+    margin-top: 70px;
+    z-index: 100;
+    margin-right: 30px;
+  }
+
+  .date-input {
+    ion-icon{
+      position: absolute;
+      margin-top: 24px;
+      z-index: 100;
+      margin-left: 12px;
+    }
+  }
+
+  
+ion-button{
+  --border-radius: 10px;
+  text-transform: none;
+}
+
+.footer-btn{
+  position:absolute;
+  bottom: 10;
+}

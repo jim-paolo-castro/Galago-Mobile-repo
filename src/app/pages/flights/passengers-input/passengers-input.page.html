@@ -1,13 +1,73 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>passengers-input</ion-title>
+    <ion-buttons color="primary" slot="start">
+      <ion-back-button color="primary"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">passengers-input</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="flex flex-col main-div">
+    <span class="font-28 text-weight-700">Passengers</span>
+
+    <div class="flex flex-col">
+
+      <div class="flex flex-row passenger-div mt-18">
+        <div class="flex flex-col flex-4">
+          <span class="font-16">Adults</span>
+          <span class="font-13">Ages 18 and above</span>
+        </div>
+        <div class="flex flex-1 flex-row">
+          <ion-button size="medium" fill="clear" (click)="decrement('adults')" [disabled]="adults == 1" [color]="adults == 1 ? 'medium': 'primary' ">
+            <ion-icon class="font-25" name="remove-circle-outline"></ion-icon>
+          </ion-button>
+            <span class="mt-10 font-20">{{adults}}</span>
+          <ion-button size="medium" fill="clear" (click)="increment('adults')">
+            <ion-icon class="font-25" name="add-circle-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+
+      <div class="flex flex-row passenger-div mt-12">
+        <div class="flex flex-col flex-4">
+          <span class="font-16">Children</span>
+          <span class="font-13">Ages 2 to 12</span>
+        </div>
+        <div class="flex flex-1 flex-row">
+          <ion-button size="medium" fill="clear" (click)="decrement('children')" [disabled]="children == 1" [color]="children == 1 ? 'medium': 'primary' ">
+            <ion-icon class="font-25" name="remove-circle-outline"></ion-icon>
+          </ion-button>
+            <span class="mt-10 font-20">{{children}}</span>
+          <ion-button size="medium" fill="clear" (click)="increment('children')">
+            <ion-icon class="font-25" name="add-circle-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+
+      <div class="flex flex-row passenger-div mt-12">
+        <div class="flex flex-col flex-4">
+          <span class="font-16">Infants</span>
+          <span class="font-13">Under 2 years old</span>
+        </div>
+        <div class="flex flex-1 flex-row">
+          <ion-button size="medium" fill="clear" (click)="decrement('infants')" [disabled]="infants == 1" [color]="infants == 1 ? 'medium': 'primary' ">
+            <ion-icon class="font-25" name="remove-circle-outline"></ion-icon>
+          </ion-button>
+            <span class="mt-10 font-20">{{infants}}</span>
+          <ion-button size="medium" fill="clear" (click)="increment('infants')">
+            <ion-icon class="font-25" name="add-circle-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </ion-content>
+
+<div class="mb-20 ml-20 mr-20">
+  <span class="flex-center font-13 mb-24 text-center">Note: Airlines may use different terms for passengers. </span>
+  <ion-button color="primary" (click)="next()" size="large" expand="full" shape="round">
+    <span *ngIf="!isLoading">NexT</span>
+    <ion-spinner name="dots" *ngIf="isLoading"></ion-spinner>
+  </ion-button>
+</div>

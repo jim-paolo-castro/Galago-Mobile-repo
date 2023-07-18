@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login-option',
     pathMatch: 'full'
   },
   {
@@ -30,7 +30,8 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
-  },  {
+  },
+  {
     path: 'book-a-flight',
     loadChildren: () => import('./pages/flights/book-a-flight/book-a-flight.module').then( m => m.BookAFlightPageModule)
   },
@@ -49,6 +50,14 @@ const routes: Routes = [
   {
     path: 'preferred-class',
     loadChildren: () => import('./pages/flights/preferred-class/preferred-class.module').then( m => m.PreferredClassPageModule)
+  },
+  {
+    path: 'search-flight-result',
+    loadChildren: () => import('./pages/search-flight-result/search-flight-result.module').then( m => m.SearchFlightResultPageModule)
+  },
+  {
+    path: 'loader',
+    loadChildren: () => import('./loader/loader.module').then( m => m.LoaderPageModule)
   },
 
 

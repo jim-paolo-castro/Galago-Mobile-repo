@@ -6,12 +6,14 @@ ion-content {
   }
 
   .main-div{
-    margin-top: -24px;
+    margin-top: -24px;;
   }
 
+  .stub{
+    border: 1px solid grey;
+    padding: 10px;
+  }
 
-  .passenger-div{
-    border: 1px solid #D9D9D9;
-    border-radius: 12px;
-    padding: 21px 15px;
+  .search-result-div{
+    // background-color: #d9d9d9;
   }

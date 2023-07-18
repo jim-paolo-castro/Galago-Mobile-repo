@@ -1,13 +1,39 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>preferred-class</ion-title>
+    <ion-buttons color="primary" slot="start">
+      <ion-back-button color="primary"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">preferred-class</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="flex flex-col main-div">
+    <span class="font-28 text-weight-700">Preferred Class</span>
+    <div class="flex flex-col preferred-class-div mt-18">
+      <div (click)="select('economy')" [ngClass]="{'selected-class' : selected == 'economy'}" class="flex flex-1 ion-activatable ripple-parent">
+        <ion-ripple-effect></ion-ripple-effect>
+        <span class="font-16">Economy</span>
+      </div>
+      <div (click)="select('premium-economy')" [ngClass]="{'selected-class' : selected == 'premium-economy'}" class="flex flex-1 ion-activatable ripple-parent">
+        <ion-ripple-effect></ion-ripple-effect>
+        <span class="font-16">Premium economy</span>
+      </div>
+      <div (click)="select('business')" [ngClass]="{'selected-class' : selected == 'business'}" class="flex flex-1 ion-activatable ripple-parent">
+        <ion-ripple-effect></ion-ripple-effect>
+        <span class="font-16">Business</span>
+      </div>
+      <div (click)="select('first')" [ngClass]="{'selected-class' : selected == 'first'}" class="flex flex-1 ion-activatable ripple-parent">
+        <ion-ripple-effect></ion-ripple-effect>
+        <span class="font-16">First</span>
+      </div>
+    </div>
+  </div>
 </ion-content>
+
+<div class="mb-20 ml-20 mr-20">
+  <ion-button color="primary" (click)="next()" size="large" expand="full" shape="round">
+    <span *ngIf="!isLoading">NexT</span>
+    <ion-spinner name="dots" *ngIf="isLoading"></ion-spinner>
+  </ion-button>
+</div>
+
