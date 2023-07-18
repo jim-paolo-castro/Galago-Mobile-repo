@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login-password',
@@ -11,11 +12,13 @@ export class LoginPasswordPage implements OnInit {
   password = "";
   showPassword = false;
   hasError = false;
-  typeConfig = 'password'
+  typeConfig = 'password';
+  email: any = ''
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private route: ActivatedRoute, private userSrvc:UserService) { }
 
   ngOnInit() {
+    this.email = this.route.snapshot.queryParamMap.get('email');
   }
 
   togglePasswordShow(){
@@ -26,16 +29,24 @@ export class LoginPasswordPage implements OnInit {
     console.log(this.showPassword)
   }
 
-  submitPassword() {
+   async submitPassword() {
+    
     this.isLoading = true;
-    setTimeout(() => {
-      console.log(this.password)
-      if (this.password == 'password') this.router.navigate(['/home'])
-      else {
-        this.isLoading = false
-        this.hasError = true
-      }
-    }, 3000);
+    const data = { 
+      email: this.email,
+      password: this.password
+    }
+    console.log("To pass: ", data)
+
+    await this.userSrvc.signIn(data).subscribe((res) => {
+      console.log("sign-in result:", res)
+      if(res.accessToken) this.router.navigate(['/home'])
+      this.isLoading = false
+    }, (err) => {
+      this.hasError = true
+      this.isLoading = false
+    })
+
   }
 
 

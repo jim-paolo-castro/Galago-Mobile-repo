@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login-email',
@@ -12,22 +13,23 @@ export class LoginEmailPage implements OnInit {
   email = '';
   hasError = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userSrvc:UserService) { }
 
   ngOnInit() {
+    
   }
 
-  submitEmail() {
+  async submitEmail() {
+
     this.isLoading = true;
-    setTimeout(() => {
-      console.log(this.email)
-      if (this.email == 'test@gmail.com') this.router.navigate(['/login-password'])
-      else if(this.email =='') this.router.navigate(['/email-confirmation'])
-      else {
-        this.isLoading = false
-        this.hasError = true
-      }
-    }, 3000);
+
+    await this.userSrvc.verifyEmail(this.email).subscribe((res) => {
+      this.isLoading = false
+      console.log("verifying result:", res)
+      if (res) this.router.navigate(['/login-password'], {queryParams: {email: this.email}})
+      else this.router.navigate(['/email-confirmation'], {queryParams: {email: this.email}})
+    })
+   
   }
 
 }

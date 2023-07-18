@@ -21,7 +21,7 @@
       </div>
 
       <div class="flex flex-col mt-50">
-        <ion-button [routerLink]="['/create-account']" fill="solid" color="light" expand="block">Open the email app</ion-button>
+        <ion-button (click)="openEmail()" fill="solid" color="light" expand="block">Open the email app</ion-button>
         <ion-button fill="clear" color="light" >Resend</ion-button>
       </div>
       
