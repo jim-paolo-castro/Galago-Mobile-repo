@@ -19,5 +19,9 @@ export class UserService {
     return this.http.post(`${this.globalSrvc.baseUrl}/auth/sign-in`, data)
   }
 
+  createAccount(data: Object): Observable<any>{
+    return this.http.post(`${this.globalSrvc.baseUrl}/auth/sign-up`, data)
+  }
+
   // handleError(error:htt)
 }

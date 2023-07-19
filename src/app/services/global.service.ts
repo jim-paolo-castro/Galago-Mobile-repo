@@ -9,5 +9,7 @@ export class GlobalService {
   baseUrl = 'http://13.228.246.186:3111'
   
 
-  constructor() { }
+  constructor() {
+    
+  }
 }
