@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+// import { stringify } from 'querystring';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -43,6 +44,8 @@ export class LoginPasswordPage implements OnInit {
       if(res.accessToken) this.router.navigate(['/home'])
       this.isLoading = false
     }, (err) => {
+      console.log(err);
+      // if(typeof err === "object") console.log(err)
       this.hasError = true
       this.isLoading = false
     })
