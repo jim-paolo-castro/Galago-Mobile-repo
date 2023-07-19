@@ -28,6 +28,11 @@ export class LoginEmailPage implements OnInit {
       console.log("verifying result:", res)
       if (res) this.router.navigate(['/login-password'], {queryParams: {email: this.email}})
       else this.router.navigate(['/email-confirmation'], {queryParams: {email: this.email}})
+    }, (err) => {
+      console.log(err);
+      if(typeof err === "object") console.log(JSON.stringify(err))
+      this.hasError = true
+      this.isLoading = false
     })
    
   }

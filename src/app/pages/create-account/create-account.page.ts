@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-create-account',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateAccountPage implements OnInit {
 
-  constructor() { }
+  email: any = ''
+  constructor(private userSrvc: UserService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    
   }
+
+
 
 }
