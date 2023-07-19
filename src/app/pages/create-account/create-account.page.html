@@ -14,13 +14,17 @@
 
   <div class="flex flex-col fields-input">
 
+    <form [formGroup]="createAccountForm">
+
       <ion-input 
         class="mt-25" 
         label="First Name" 
+        formControlName="firstName"
         label-placement="floating"
         fill="outline" ></ion-input>
     
       <ion-input 
+        formControlName="middleName"
         class="mt-10" 
         label="Middle Name (Optional)" 
         label-placement="floating"
@@ -28,52 +32,59 @@
     
       <ion-input 
         class="mt-10" 
-        label="Last Name" 
+        label="Last Name"
+        formControlName="lastName"
         label-placement="floating"
         fill="outline" ></ion-input>
-        <span class="font-13 text-medium mt-10">Make sure it matches the name on your passport or any valid government IDs. </span>
+        <span class="font-13 black-200-sans mt-10">Make sure it matches the name on your passport or any valid government IDs. </span>
 
       <ion-input
+        formControlName="birthDate"
         type="date"
         class="mt-24" 
         label="Birthday (Jan 01, 1990)" 
         label-placement="floating"
         fill="outline" ></ion-input>
-        <span class="font-13 text-medium mt-10">To create an account, you need to be at least 18. Your birthday won’t ve shared with other people who use GalaGO! </span>
+        <span class="font-13 black-200-sans mt-10">To create an account, you need to be at least 18. Your birthday won’t ve shared with other people who use GalaGO! </span>
 
       <ion-input 
-        disabled
-        class="mt-24" 
+        formControlName="email"
+        class="mt-24 email-disabled" 
         label="Email Address" 
         label-placement="floating"
         fill="outline" ></ion-input>
-        <span class="font-13 text-medium mt-10">We wil email you booking confirmations and receipt </span>
+        <span class="font-13 black-200-sans mt-10">We wil email you booking confirmations and receipt </span>
 
-      <ion-input 
-        class="mt-24"
-        type="password"
-        label="Password" 
-        label-placement="floating"
-        fill="outline" ></ion-input>
-        <span class="font-13 text-medium mt-10">At least 8 alpha numeric characters with at least 1 upper case and 1 special character </span>
-
-      <ion-input 
-        class="mt-24"
-        type="password"
-        label="Confirm Password" 
-        label-placement="floating"
-        fill="outline" ></ion-input>
+      <div>
+        <ion-input 
+          formControlName="password"
+          class="mt-24"
+          type="password"
+          label="Password" 
+          label-placement="floating"
+          fill="outline" ></ion-input>
+          <span class="font-13 black-200-sans mt-10">At least 8 alpha numeric characters with at least 1 upper case and 1 special character </span>
+      </div>
+        <ion-input 
+          formControlName="confirmPassword"
+          class="mt-24"
+          type="password"
+          label="Confirm Password" 
+          label-placement="floating"
+          fill="outline" ></ion-input>
 
       
       <div class="flex flex-row mt-24">
         <div class="flex flex-2 mr-5">
           <ion-input
+            formControlName="countryCode"
             label="Country" 
             label-placement="floating"
             fill="outline" ></ion-input>
         </div>
         <div class="flex flex-5">
-          <ion-input 
+          <ion-input
+            formControlName="mobileNumber"
             label="Mobile Number" 
             label-placement="floating"
             fill="outline" ></ion-input>
@@ -81,8 +92,10 @@
       </div>
 
       <div class="mt-30">
-        <ion-button size="large" expand="full" shape="round" fill="solid" color="primary">Create an Account</ion-button>
+        <ion-button size="large" expand="full" shape="round" type="submit" (click)="submit()" fill="solid" color="primary">Create an Account</ion-button>
       </div>
+
+    </form>
 
 
   </div>

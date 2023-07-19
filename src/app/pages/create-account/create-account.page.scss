@@ -19,3 +19,47 @@ ion-content{
     --border-radius: 10px;
     text-transform: none;
   }
+
+  ion-input{
+    --background: #fff;
+    --border-color:#d9d9d9;
+    --border-radius: 20px;
+    --border-width: 1px;
+    --highlight-color-valid: var(--ion-color-primary);
+    --placeholder-color: #d9d9d9;
+    // --placeholder-opacity: 0.5;
+  }
+
+  ion-input.email-disabled.has-value {
+    --background: #F9F9F9;
+    --border-color: #adadad;
+  }
+
+  ion-input.error-password.has-value.sc-ion-input-md-h{
+    --border-color: var(--ion-color-danger);
+    --border-width: 1.5px;
+  
+  }
+  
+  ion-input div.label-text.sc-ion-input-md { 
+    color: #d9d9d9;
+    font-size: 13px;
+  }
+  
+  .sc-ion-input-md-h{
+    --color: #adadad;
+    font-size: 13px;
+    font-weight: 100;
+  }
+  
+  .has-value.sc-ion-input-md-h{
+    --color: black;
+    --border-color:  var(--ion-color-primary);
+    --border-width: 1.5px;
+  
+  }
+
+  .black-200-sans{
+    color: #adadad;
+    font-family: 'general-sans';
+  }
