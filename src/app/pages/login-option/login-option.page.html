@@ -1,6 +1,6 @@
 <ion-toolbar>
   <ion-buttons slot="end">
-    <ion-button fill="clear" class="skip-button" color="primary"> Skip </ion-button>
+    <ion-button fill="clear" [routerLink]="['/home']" class="skip-button" color="primary"> Skip </ion-button>
   </ion-buttons>
 </ion-toolbar>
 
@@ -8,7 +8,7 @@
 
   <div class="flex flex-col flex-center mt-50 ">
     <span class="flex font-22 text-weight-700">Login in or Sign up</span>
-    <span class="flex font-13 text-medium mt-5">Get ready to start your journey</span>
+    <span class="flex font-13 lighter-text mt-6">Get ready to start your journey</span>
   </div>
 
   <div class="flex flex-col login-btns mt-50">
