@@ -41,67 +41,93 @@
       <ion-input
         formControlName="birthDate"
         type="date"
+        max="2022-05-31T23:59:59"
         class="mt-24" 
-        label="Birthday (Jan 01, 1990)" 
+        label="Birthday"
+        placeholder="(Jan 01, 1990)" 
         label-placement="floating"
         fill="outline" ></ion-input>
         <span class="font-13 black-200-sans mt-10">To create an account, you need to be at least 18. Your birthday won’t ve shared with other people who use GalaGO! </span>
 
-      <ion-input 
+      <ion-input
         formControlName="email"
         class="mt-24 email-disabled" 
         label="Email Address" 
         label-placement="floating"
         fill="outline" ></ion-input>
-        <span class="font-13 black-200-sans mt-10">We wil email you booking confirmations and receipt </span>
+        <span class="font-13 black-200-sans mt-10">We will email you booking confirmations and receipt </span>
 
       <div>
         <ion-input 
           formControlName="password"
           class="mt-24"
-          type="password"
+          [type]="typeConfig"
           label="Password" 
           label-placement="floating"
           fill="outline" ></ion-input>
-          <span class="font-13 black-200-sans mt-10">At least 8 alpha numeric characters with at least 1 upper case and 1 special character </span>
+         <span (click)="togglePasswordShow()" class="passwordToggle font-13 ">{{ showPassword ? 'Hide' : 'Show'}}</span>
+        <!-- Validation message -->
+        <span class="font-13 black-200-sans mt-10" *ngIf="!createAccountForm.get('password').touched && !createAccountForm.get('password').dirty">
+          At least 8 alpha numeric characters with at least 1 upper case and 1 special character
+        </span>
+        <span class="font-13 black-200-sans danger-text mt-10" *ngIf="isFormFieldInvalid(createAccountForm, 'password')">
+          <ion-icon class="icon-identifier" name="alert-circle-outline"></ion-icon>
+          Password at least 8 alpha numeric characters with at least 1 upper case and 1 special character
+        </span>
+        <span class="font-13 black-200-sans success-text mt-10"  *ngIf="!isFormFieldInvalid(createAccountForm, 'password') && !!createAccountForm.get('password').dirty">
+          <ion-icon class="icon-identifier" name="checkmark-circle-outline" ></ion-icon>
+          Password: Looks Good
+        </span>
       </div>
+
+      <div>
         <ion-input 
           formControlName="confirmPassword"
           class="mt-24"
-          type="password"
+          [type]="typeConfigConfirm"
           label="Confirm Password" 
           label-placement="floating"
           fill="outline" ></ion-input>
+         <span (click)="toggleConfirmPasswordShow()" class="passwordToggle font-13 ">{{ showConfirmPassword ? 'Hide' : 'Show'}}</span>
 
+
+          <span class="font-13 black-200-sans danger-text mt-10" color="success" *ngIf="!isPasswordMatch() && createAccountForm.get('confirmPassword').touched">
+            Password do not match
+          </span>
+
+          <span class="font-13 black-200-sans success-text mt-10" color="success" *ngIf="isPasswordMatch() && !createAccountForm.get('confirmPassword').errors">
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+            Password match
+          </span>
+        </div>
       
       <div class="flex flex-row mt-24">
         <div class="flex flex-2 mr-5">
-          <ion-input
-            formControlName="countryCode"
-            label="Country" 
-            label-placement="floating"
-            fill="outline" ></ion-input>
+          <ion-select label="Country" formControlName="countryCode" label-placement="floating" fill="outline">
+            <ion-select-option selected value="+63"> <ion-icon name="checkmark-circle-outline"></ion-icon> +63</ion-select-option>
+          </ion-select>
+
         </div>
         <div class="flex flex-5">
           <ion-input
-            formControlName="mobileNumber"
+            formControlName="number"
             label="Mobile Number" 
             label-placement="floating"
+            placeholder="Mobile Number (Optional)"
             fill="outline" ></ion-input>
         </div>
       </div>
 
       <div class="mt-30">
-        <ion-button size="large" expand="full" shape="round" type="submit" (click)="submit()" fill="solid" color="primary">Create an Account</ion-button>
+        <ion-button size="large" expand="full" shape="round"  type="submit" [disabled]="!createAccountForm.valid || !isPasswordMatch()" (click)="submit()" fill="solid" color="primary">
+          <span class="font-16" *ngIf="!isLoading">Create an Account</span>
+          <ion-spinner class="font-45" name="dots" *ngIf="isLoading"></ion-spinner>
+        </ion-button>
       </div>
-
     </form>
 
 
   </div>
 
- 
-
- 
 
 </ion-content>

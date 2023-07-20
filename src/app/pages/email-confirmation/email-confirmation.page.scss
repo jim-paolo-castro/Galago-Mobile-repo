@@ -17,3 +17,9 @@ ion-button{
     --border-width: 1px;
     --border-radius: 12px;
 }
+
+.footer-part {
+    background-color: var(--ion-color-primary);
+    border: none;
+    padding-bottom: 30px;
+}
