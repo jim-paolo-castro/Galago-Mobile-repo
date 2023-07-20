@@ -5,8 +5,12 @@ const config: CapacitorConfig = {
   appName: 'GalaGo',
   webDir: 'www',
   server: {
-    androidScheme: 'https'
-  }
+    androidScheme: 'http',
+    cleartext: true
+  },
+  android: {
+    allowMixedContent: true
+  },
 };
 
 export default config;
