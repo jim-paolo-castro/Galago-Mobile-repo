@@ -25,12 +25,12 @@ export class LoginEmailPage implements OnInit {
 
     await this.userSrvc.verifyEmail(this.email).subscribe((res) => {
       this.isLoading = false
-      console.log("verifying result:", res)
+      console.log("verifying result:", res) //true or false
       if (res) this.router.navigate(['/login-password'], {queryParams: {email: this.email}})
       else this.router.navigate(['/email-confirmation'], {queryParams: {email: this.email}})
     }, (err) => {
       console.log(err);
-      if(typeof err === "object") console.log(JSON.stringify(err))
+      // if(typeof err === "object") console.log(JSON.stringify(err))
       this.hasError = true
       this.isLoading = false
     })
