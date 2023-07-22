@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 // import { stringify } from 'querystring';
 import { UserService } from 'src/app/services/user.service';
 
@@ -16,7 +17,12 @@ export class LoginPasswordPage implements OnInit {
   typeConfig = 'password';
   email: any = ''
 
-  constructor(private router: Router, private route: ActivatedRoute, private userSrvc:UserService) { }
+  constructor(
+    private router: Router, 
+    private route: ActivatedRoute, 
+    private userSrvc:UserService,
+    private storageSrvc: StorageService
+    ) { }
 
   ngOnInit() {
     this.email = this.route.snapshot.queryParamMap.get('email');
@@ -41,7 +47,11 @@ export class LoginPasswordPage implements OnInit {
 
     await this.userSrvc.signIn(data).subscribe((res) => {
       console.log("sign-in result:", res)
-      if(res.accessToken) this.router.navigate(['/home'])
+      if(res.accessToken) {
+
+        this.storageSrvc.setItem("TOKEN_KEY", `Bearer ${res.accessToken}` )
+        this.router.navigate(['/home'])
+      }
       this.isLoading = false
     }, (err) => {
       console.log(err);

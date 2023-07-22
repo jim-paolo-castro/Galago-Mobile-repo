@@ -11,7 +11,7 @@ export class StorageService {
     localStorage.setItem(itemName, value)
   }
 
-  getItem(itemName: string){
+  getItem(itemName: string) {
    return localStorage.getItem(itemName)
   }
 }

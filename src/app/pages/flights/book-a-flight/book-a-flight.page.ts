@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage.service';
 import * as moment from 'moment'; 
+import { FlightService } from 'src/app/services/flight.service';
 
 @Component({
   selector: 'app-book-a-flight',
@@ -22,6 +23,7 @@ export class BookAFlightPage implements OnInit {
 
   constructor(
     private router: Router,
+    private flightSrvc: FlightService,
     private storageSrvc: StorageService) { }
 
   ngOnInit() {
@@ -125,16 +127,95 @@ export class BookAFlightPage implements OnInit {
   }
 
   search(){
+
     this.isLoading = true;
-    setTimeout(() => {
+    const origin = JSON.parse(this.flyingFromStorage) 
+    const destination = JSON.parse(this.flyingToStorage)
+
+    let dateOfDeparture  = this.departureDate 
+    const data = {
+      
+      OriginDestinationInformations: [
+        {
+          DepartureDateTime: moment(this.departureDate).format('YYYY/MM/DD'),
+          OriginLocationCode: origin.cityCode,
+          DestinationLocationCode: destination.cityCode
+        }
+      ],
+      PassengerTypeQuantities: this.getTravelersToSubmit(),
+      TravelPreferences: {
+        MaxStopsQuantity: "All",
+        CabinPreference: this.getPreferredClass(),
+        Preferences: {
+          CabinClassPreference: {
+            CabinType: this.getPreferredClass(),
+            PreferenceLevel: "Restricted"
+          }
+        },
+        AirTripType: "OneWay"
+      }
+
+    }
+
+
+
+    console.log("The data to submit:", data)
+
+    this.flightSrvc.searchFlight(data).subscribe((res) => {
+      console.log("result", res)
       this.router.navigate(['/search-flight-result']);
       this.isLoading = false
-    }, 2000);
+    },
+    (err) => {
+      console.log("error", err)
+    })
+     
   }
 
   inputsValid(){
     if (this.flyingFrom != '' && this.flyingFrom != '' && this.departureDate != '' && this.travelers != '' && this.preferredClass != '') return true
     else return false  
+  }
+
+  getTravelersToSubmit(){
+    
+    const savedTravelers: any = this.storageSrvc.getItem("PASSENGERS")
+    const travelers = JSON.parse(savedTravelers)
+    
+    let arr = []
+    if(travelers.ADT > 0) arr.push({ Code: "ADT", Quantity: (travelers.ADT).toString() })
+    if(travelers.CHD > 0) arr.push({ Code: "CHD", Quantity: (travelers.CHD).toString() })
+    if(travelers.INF > 0) arr.push({ Code: "INF", Quantity: (travelers.INF).toString() })
+
+    return arr
+  }
+
+  getPreferredClass() {
+    const preferrence: any = this.storageSrvc.getItem("CABIN_PREFERENCE")
+    let value = ''
+    switch (preferrence) {
+      case 'economy':
+        value =  "Y"
+        break;
+      
+      case 'business':
+        value =  "C"
+        break;
+
+      case 'first':
+        value =  "F"
+        break;
+
+      case 'premium-economy':
+        value =  "S"
+        break;
+    
+      default:
+        break;
+    }
+
+    return value
+
   }
 
 }
