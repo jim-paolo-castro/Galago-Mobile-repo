@@ -95,7 +95,7 @@
 
 
 <div class="mb-20 ml-20 mr-20">
-  <ion-button color="primary" (click)="search()" size="large" expand="full" shape="round">
+  <ion-button color="primary" (click)="search()" size="large" expand="full" shape="round" [disabled]="!inputsValid">
     <span *ngIf="!isLoading">Search</span>
     <ion-spinner name="dots" *ngIf="isLoading"></ion-spinner>
   </ion-button>

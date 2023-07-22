@@ -132,4 +132,9 @@ export class BookAFlightPage implements OnInit {
     }, 2000);
   }
 
+  inputsValid(){
+    if (this.flyingFrom != '' && this.flyingFrom != '' && this.departureDate != '' && this.travelers != '' && this.preferredClass != '') return true
+    else return false  
+  }
+
 }
