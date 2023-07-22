@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-passengers-input',
@@ -9,16 +10,29 @@ import { Router } from '@angular/router';
 export class PassengersInputPage implements OnInit {
 
   adults = 1
-  children = 1
-  infants = 1
+  children = 0
+  infants = 0
   isLoading = false
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private storageSrvc: StorageService,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit() {
+   const data = this.storageSrvc.getItem('PASSENGERS')
+   if(data) {
+    const parsedData = JSON.parse(data)
+    this.adults = parsedData.ADT
+    this.children = parsedData.CHD
+    this.infants = parsedData.INF
+   }
   }
 
   next(){
+    const data = {ADT: this.adults, CHD: this.children, INF: this.infants}
+    this.storageSrvc.setItem("PASSENGERS", JSON.stringify(data))
     this.router.navigate(['/preferred-class'])
   }
 
@@ -59,5 +73,6 @@ export class PassengersInputPage implements OnInit {
         break;
     }
   }
+
 
 }

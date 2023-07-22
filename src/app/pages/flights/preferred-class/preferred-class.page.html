@@ -31,7 +31,7 @@
 </ion-content>
 
 <div class="mb-20 ml-20 mr-20">
-  <ion-button color="primary" (click)="next()" size="large" expand="full" shape="round">
+  <ion-button color="primary" (click)="next()" [disabled]="selected ==''" size="large" expand="full" shape="round">
     <span *ngIf="!isLoading">NexT</span>
     <ion-spinner name="dots" *ngIf="isLoading"></ion-spinner>
   </ion-button>

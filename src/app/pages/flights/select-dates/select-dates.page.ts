@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-select-dates',
@@ -12,12 +13,18 @@ export class SelectDatesPage implements OnInit {
   // type:  // 'string' | 'js-date' | 'moment' | 'time' | 'object'
 
   dateNow: String = new Date().toISOString();
-  departureDate = ''
+  departureDate: any = ''
+  selectedDate: any =''
   isLoading = false
   
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private storageSrvc: StorageService) { }
 
   ngOnInit() {
+    const data: any = this.storageSrvc.getItem('DEPARTURE_DATE') 
+    this.selectedDate =  new Date(data).toISOString(); 
+    this.departureDate = this.selectedDate;
   }
 
   dateChanged(e: any) {
@@ -26,6 +33,7 @@ export class SelectDatesPage implements OnInit {
   }
 
   next() {
+    this.storageSrvc.setItem('DEPARTURE_DATE', this.departureDate)
     this.router.navigate(['/passengers-input'])
   }
 
