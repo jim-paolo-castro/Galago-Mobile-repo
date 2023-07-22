@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import * as _ from 'underscore';
 import { FlightService } from 'src/app/services/flight.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-flying-from-to',
@@ -12,42 +13,52 @@ import { FlightService } from 'src/app/services/flight.service';
 export class FlyingFromToPage implements OnInit {
 
   type: any = 'to' 
-  location = ""
+  airport = {}
   tripType: any = ''
-  searchResult : any
-  isLoading = false
+  searchResult: any = []
+  isLoading = false;
+  location = ''
 
   constructor(
     private router: Router, 
     private route: ActivatedRoute, 
     private loadingCtrl: LoadingController,
-    private flightSrvc: FlightService) { }
+    private flightSrvc: FlightService,
+    private storageSrvc: StorageService) { }
 
   ngOnInit() {
     this.type = this.route.snapshot.queryParamMap.get('type');
-    this.tripType = this.route.snapshot.queryParamMap.get('tripType');
   }
 
-  setLocation(loc: any) {
-    this.location = loc;
-
-    let query = {}
-    if (this.type == 'from') {query = { type: 'to', tripType: this.tripType}}
-    else query = { type: 'from', tripType: this.tripType }
-
-    const params: NavigationExtras = {
-      queryParams: query
-    }
+  setLocation(airport: any) {
+    this.airport = airport;
+    this.location = ''
 
     this.showLoading()
 
+    const params: NavigationExtras = {
+      queryParams: { type: 'to'}
+    }
+    this.searchResult = []
+
+
     setTimeout(() => {
-      this.router.navigate(['/flying-from-to'], params);
-      console.log('set timeout works')
-      this.location = ''
-      if (this.type == 'from') this.type = 'to'
-      else this.router.navigate(['/select-dates'])
+      const data = JSON.stringify(this.airport)
+      if (this.type == 'from'){ //origin  (flying-from)
+
+        this.storageSrvc.setItem('FLIGHT_ORIGIN', data);
+        this.router.navigate(['/flying-from-to'], params);
+        this.type = 'to'
+
+      } else { //destination (flying-to)
+        this.storageSrvc.setItem('FLIGHT_DESTINATION', data)
+        this.router.navigate(['/select-dates']) 
+      }
+
+      this.airport = {}
+
     }, 1500);
+    
   }
 
   async showLoading() {
@@ -64,7 +75,7 @@ export class FlyingFromToPage implements OnInit {
     if(value.length > 4) {
       console.log(e)
       this.isLoading = true
-      this.flightSrvc.searchAirport(`cityName=${value}`).subscribe((res) => {
+      this.flightSrvc.searchAirport(`airportSearch=${value}`).subscribe((res) => {
         console.log("result", res)
         const result = res.tag;
 

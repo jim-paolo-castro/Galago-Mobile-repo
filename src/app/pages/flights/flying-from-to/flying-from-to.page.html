@@ -16,19 +16,19 @@
       class="for-search mt-17" 
       label="Country, city or airport" 
       label-placement="floating"
-      [value]="location"
+      [ngModel]="location"
       (ionInput)="searchAirport($event)"
       fill="outline" ></ion-input>
 
       <span class="font-12 mt-24">Nearby Airports</span>
 
     <div *ngIf="!isLoading">
-      <ion-list *ngFor="let x of searchResult[0]">
+      <ion-list *ngFor="let x of searchResult">
         <ion-list-header lines="inset">
           <ion-label class="font-16 text-uppercase">{{x.cityName}}</ion-label>
         </ion-list-header>
         <ion-item>
-          <ion-label class="ml-12 font-13" (click)="setLocation('MNL')"> <b class="text-primary">{{MNL}}</b> - Ninoy Aquino International</ion-label>
+          <ion-label class="ml-12 font-13" (click)="setLocation(x)"> <b class="text-primary">{{x.cityCode}}</b> - {{x.airportName}}</ion-label>
         </ion-item>
         
       </ion-list>
