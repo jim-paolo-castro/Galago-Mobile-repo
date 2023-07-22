@@ -18,7 +18,7 @@
           <span class="font-13">Ages 18 and above</span>
         </div>
         <div class="flex flex-1 flex-row">
-          <ion-button size="medium" fill="clear" (click)="decrement('adults')" [disabled]="adults == 1" [color]="adults == 1 ? 'medium': 'primary' ">
+          <ion-button size="medium" fill="clear" (click)="decrement('adults')" [disabled]="adults == 0" [color]="adults == 0 ? 'medium': 'primary' ">
             <ion-icon class="font-25" name="remove-circle-outline"></ion-icon>
           </ion-button>
             <span class="mt-10 font-20">{{adults}}</span>
@@ -34,7 +34,7 @@
           <span class="font-13">Ages 2 to 12</span>
         </div>
         <div class="flex flex-1 flex-row">
-          <ion-button size="medium" fill="clear" (click)="decrement('children')" [disabled]="children == 1" [color]="children == 1 ? 'medium': 'primary' ">
+          <ion-button size="medium" fill="clear" (click)="decrement('children')" [disabled]="children == 0" [color]="children == 0 ? 'medium': 'primary' ">
             <ion-icon class="font-25" name="remove-circle-outline"></ion-icon>
           </ion-button>
             <span class="mt-10 font-20">{{children}}</span>
@@ -50,7 +50,7 @@
           <span class="font-13">Under 2 years old</span>
         </div>
         <div class="flex flex-1 flex-row">
-          <ion-button size="medium" fill="clear" (click)="decrement('infants')" [disabled]="infants == 1" [color]="infants == 1 ? 'medium': 'primary' ">
+          <ion-button size="medium" fill="clear" (click)="decrement('infants')" [disabled]="infants == 0" [color]="infants == 0 ? 'medium': 'primary' ">
             <ion-icon class="font-25" name="remove-circle-outline"></ion-icon>
           </ion-button>
             <span class="mt-10 font-20">{{infants}}</span>

@@ -16,11 +16,11 @@
       class="for-search mt-17" 
       label="Country, city or airport" 
       label-placement="floating"
-      [ngModel]="location"
+      [(ngModel)]="location"
       (ionInput)="searchAirport($event)"
       fill="outline" ></ion-input>
 
-      <span class="font-12 mt-24">Nearby Airports</span>
+      <!-- <span class="font-12 mt-24">Nearby Airports</span> -->
 
     <div *ngIf="!isLoading">
       <ion-list *ngFor="let x of searchResult">

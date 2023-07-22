@@ -26,6 +26,7 @@
         class="mt-24 flight-input" 
         label="Flying from" 
         label-placement="floating"
+        [(ngModel)]="flyingFrom"
         fill="outline"
         (click)="openFromToPage('from')"
       ></ion-input>
@@ -33,12 +34,13 @@
       <ion-input 
         class="mt-8" 
         label="Flying to" 
+        [(ngModel)]="flyingTo"
         label-placement="floating"
         fill="outline"
         (click)="openFromToPage('to')"
       ></ion-input>
       
-      <ion-button class="interchange">Balikan</ion-button>
+      <ion-button class="interchange" (click)="changeFromToLocation()">Balikan</ion-button>
 
     </div>
 
@@ -47,6 +49,7 @@
         <ion-icon name="calendar-outline"></ion-icon>
         <ion-input 
           label="Departure" 
+          [(ngModel)]="departureDate"
           label-placement="floating"
           fill="outline"
           (click)="openPage('departure-date')"
@@ -69,14 +72,16 @@
     <div class="flex flex-col mt-8 flights-input">
       <ion-input 
         label="Travelers" 
+        [(ngModel)]="travelers"
         label-placement="floating"
         fill="outline"
         (click)="openPage('passengers')"
       ></ion-input>
 
       <ion-input 
-        class="mt-8"
+        class="mt-8 text-capitalize"
         label="Preferred Class" 
+        [(ngModel)]="preferredClass"
         label-placement="floating"
         fill="outline"
         (click)="openPage('preferred-class')"

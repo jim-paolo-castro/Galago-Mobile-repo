@@ -28,11 +28,29 @@ export class FlyingFromToPage implements OnInit {
 
   ngOnInit() {
     this.type = this.route.snapshot.queryParamMap.get('type');
+    
+  }
+
+  ionViewWillEnter() {
+    console.log("will enter fires in :flying")
+    
+    if(this.type == 'from') {
+      const data: any = this.storageSrvc.getItem('FLIGHT_ORIGIN')
+      if(data) {
+        const savedData = JSON.parse(data)
+        this.location = savedData.cityName + ' (' + savedData.cityCode + ')'
+      }
+    } else { // flying to
+      const data: any = this.storageSrvc.getItem('FLIGHT_DESTINATION')
+      if(data) {
+        const savedData = JSON.parse(data)
+        this.location = savedData.cityName + ' (' + savedData.cityCode + ')'
+      }
+    }
   }
 
   setLocation(airport: any) {
     this.airport = airport;
-    this.location = ''
 
     this.showLoading()
 
@@ -49,6 +67,8 @@ export class FlyingFromToPage implements OnInit {
         this.storageSrvc.setItem('FLIGHT_ORIGIN', data);
         this.router.navigate(['/flying-from-to'], params);
         this.type = 'to'
+        this.ionViewWillEnter()
+        this.location = ''
 
       } else { //destination (flying-to)
         this.storageSrvc.setItem('FLIGHT_DESTINATION', data)
