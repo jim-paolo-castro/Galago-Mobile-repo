@@ -159,6 +159,12 @@ export class BookAFlightPage implements OnInit {
 
     console.log("The data to submit:", data)
 
+    // const details = { 
+    //   departureDate: this.departureDate,
+    //   passengers: this.getTravelersToSubmit(),
+    //   preferredClass:
+    //  }
+
     const navigationExtras: NavigationExtras = {
       state : data
     }

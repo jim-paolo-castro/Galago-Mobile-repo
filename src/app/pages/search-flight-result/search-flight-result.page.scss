@@ -3,6 +3,14 @@ ion-content {
     --padding-end: 20px;
     --padding-start: 20px;
     --padding-top: 20px;
+    --ion-background-color: #F7F7F7;
+
+  }
+
+  
+  .header-info{
+    margin: 5px 20px;
+    margin-top: -5px;
   }
 
   .main-div{
@@ -10,10 +18,124 @@ ion-content {
   }
 
   .stub{
-    border: 1px solid grey;
-    padding: 10px;
+    // border: 1px solid grey;
+    padding: 21px 17px;
+    background-color: #fff;
+    border-radius: 12px;
   }
 
   .search-result-div{
-    // background-color: #d9d9d9;
+    background-color: #F7F7F7;
   }
+
+  .label-tag{
+    background-color: #BFFAFF;
+    border-radius: 12px;
+    padding: 2px 4px;
+    .tag{
+      font-size: 10px;
+      font-weight: 600;
+      text-align: right;
+      color: var(--ion-color-primary);
+    }
+  }
+
+  .airport{
+    img{
+      width: 16.5px;
+      height: 16.5PX;
+    }
+    span{
+      font-size: 10px;
+      color: var(--ion-black-100);
+      margin-left: 6px;
+      margin-top: 2px;
+    }
+  }
+
+  .location-time{
+    color: var(--ion-black-100);
+    font-family: 'general-sans';
+  }
+
+  .airplane-center hr{
+    // background-color: rgb(243, 192, 192);
+    border-top: 2px dashed var(--ion-black-300);
+    height: 3px;
+    width: 100%;
+    opacity: 0.4;
+  }
+
+  .airplane-center{ 
+    margin-top: -10px;
+    .custom-icon-airplane{
+      margin-top: -20px;
+      color: var(--ion-color-primary);
+      font-size: 18px;
+    }
+  }
+
+  .special-deals{
+    span{
+      color: var(--ion-color-primary);
+      margin-right: 8px;
+      font-size: 20px;
+      
+    }
+
+    .custom-icon-skewed-arrow {
+      margin-bottom: -7px;
+    }
+  }
+
+  .price{
+    color: var(--ion-color-primary);
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'general-sans';
+  }
+
+  .arrow-up{
+    padding-bottom: 2.5px;
+  }
+
+  .circle-cut-left{
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #F7F7F7;
+    margin-left: -28px;
+
+  }
+
+  .circle-cut-right{
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #F7F7F7;
+    margin-right: -28px;
+  }
+  
+
+  .stub-cut {
+    width: 100%;
+    margin-top: 5px;
+    hr {
+      border-top: 2px dashed var(--ion-black-300);
+      height: 3px;
+      width: 100%;
+      margin-bottom: 12px;
+      opacity: 0.4;
+    }
+  }
+
+  // .dotted-spaced {
+  //   background-image: linear-gradient(to right, #000 10%, rgba(255, 255, 255, 0) 0%);
+  //   background-position: top;
+  //   background-size: 10px 1px;
+  //   background-repeat: repeat-x;
+  // }
+
+  // .price .currency {
+  //   font-family: ;
+  // }

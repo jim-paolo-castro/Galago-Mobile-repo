@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-search-flight-result',
@@ -8,13 +9,40 @@ import { Router } from '@angular/router';
 })
 export class SearchFlightResultPage implements OnInit {
 
+  departureDate: any = ''
+  passengers = 0
+  preferredClass: any = ''
+  origin: any = {}
+  destination: any = {}
+
+  results = ['one', 'two', "ad", "asd", "ad", "adasd", "asd"]
   constructor(
-    private router: Router
+    private router: Router,
+    private storageSrvc: StorageService
   ) { }
 
   ngOnInit() {
     const routerState = this.router.getCurrentNavigation()?.extras.state;
     console.log("Data from loader", routerState)
+
+    this.departureDate = this.storageSrvc.getItem("DEPARTURE_DATE")
+
+    const x: any = this.storageSrvc.getItem("PASSENGERS")
+    let person = JSON.parse(x)
+    for (const key in person) {
+        if(person[key] > 0) this.passengers += person[key]
+    }
+    console.log("number of passengers:", this.passengers)
+
+    this.preferredClass = this.storageSrvc.getItem("CABIN_PREFERENCE")
+
+    const origin: any = this.storageSrvc.getItem("FLIGHT_ORIGIN")
+    this.origin = JSON.parse(origin)
+
+    const destination: any = this.storageSrvc.getItem("FLIGHT_DESTINATION")
+    this.destination = JSON.parse(destination)
+
+
 
   }
 
