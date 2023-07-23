@@ -23,7 +23,7 @@ export class SelectDatesPage implements OnInit {
 
   ngOnInit() {
     const data: any = this.storageSrvc.getItem('DEPARTURE_DATE') 
-    this.selectedDate =  new Date(data).toISOString(); 
+    this.selectedDate =  data ? new Date(data).toISOString() : this.dateNow; 
     this.departureDate = this.selectedDate;
   }
 

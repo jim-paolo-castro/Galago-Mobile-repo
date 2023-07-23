@@ -9,10 +9,9 @@
     margin-top: -24px;;
   }
 
-// .label-text-wrapper{
-//     margin-top: -3px;
-//     transform: translateY(75%) scale(1);
-// }
+  ion-input.flights-input .label-text-wrapper.sc-ion-input-md{
+   margin-top: -3px;
+  }
 
 
   ion-button{
@@ -31,8 +30,23 @@
     // --highlight-color-valid: red;
      --placeholder-color: #ddd;
      --placeholder-opacity: 0.6;
-     
+     --border-color: var(--ion-black-300)
   }
+
+  .sc-ion-input-md-h{ //label or placeholder
+    --color: var(--ion-black-200);
+    font-size: 14.5px;
+    font-weight: 100;
+  }
+
+  .has-value.sc-ion-input-md-h{ //value of input  
+    --color: var(--ion-black-100);
+    --placeholder-color: red;
+    --highlight-color-valid: red;
+    // .label-text-wrapper {
+    // }
+  }
+  
 
   .date-input ion-input {
     --padding-start: 40px;
@@ -42,17 +56,28 @@
   .interchange{
     position: absolute;
     right: 0;
-    margin-top: 70px;
+    margin-top: 60px;
     z-index: 100;
-    margin-right: 30px;
+    margin-right: 54px;
+    --border-radius: 50%;
+    width: 48px;
+    height: 48px;
+
+    span {
+      font-size: 28px;
+      color: #fff;
+      position: fixed;
+    }
   }
 
   .date-input {
-    ion-icon{
+    span{
       position: absolute;
-      margin-top: 24px;
+      margin-top: 18px;
       z-index: 100;
       margin-left: 12px;
+      font-size: 20px;
+      color: var(--ion-color-primary);
     }
   }
 

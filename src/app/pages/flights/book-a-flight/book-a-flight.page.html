@@ -40,13 +40,15 @@
         (click)="openFromToPage('to')"
       ></ion-input>
       
-      <ion-button class="interchange" (click)="changeFromToLocation()">Balikan</ion-button>
+      <ion-button size="small" class="interchange" (click)="changeFromToLocation()">
+        <span color="light" slot="icon-only" class="custom-icon-interchange"></span>
+      </ion-button>
 
     </div>
 
     <div class="flex flex-row date-input mt-8">
       <div class="flex flex-1 mr-2">
-        <ion-icon name="calendar-outline"></ion-icon>
+        <span class="custom-icon-calendar"></span>
         <ion-input 
           label="Departure" 
           [(ngModel)]="departureDate"
@@ -57,7 +59,7 @@
       </div>
 
       <div class="flex flex-1 ml-2">
-        <ion-icon name="calendar-outline" color="{{tripType == 'one-way' ? 'medium' : 'dark' }}"></ion-icon>
+        <span class="custom-icon-calendar"></span>
         <ion-input 
           disabled="{{tripType == 'one-way'}}"
           label="Return" 

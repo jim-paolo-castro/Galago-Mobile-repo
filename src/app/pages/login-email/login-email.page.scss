@@ -46,8 +46,7 @@ ion-input div.label-text.sc-ion-input-md {
 }
 
 .has-value.sc-ion-input-md-h{
-  --color: black;
- 
+  --color: var(--ion-black-100);
 }
 
 .has-focus .label-text-wrapper.sc-ion-input-md{

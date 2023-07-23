@@ -157,19 +157,14 @@ export class BookAFlightPage implements OnInit {
 
     }
 
-
-
     console.log("The data to submit:", data)
 
-    this.flightSrvc.searchFlight(data).subscribe((res) => {
-      console.log("result", res)
-      this.router.navigate(['/search-flight-result']);
-      this.isLoading = false
-    },
-    (err) => {
-      console.log("error", err)
-    })
-     
+    const navigationExtras: NavigationExtras = {
+      state : data
+    }
+
+    this.router.navigateByUrl('/loader', navigationExtras)
+
   }
 
   inputsValid(){
