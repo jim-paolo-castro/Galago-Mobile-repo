@@ -140,7 +140,7 @@ export class BookAFlightPage implements OnInit {
 
   search(){
 
-    this.isLoading = true;
+    // this.isLoading = true;
     const origin: any = JSON.parse(this.flyingFromStorage) 
     const destination: any = JSON.parse(this.flyingToStorage)
 
@@ -177,6 +177,7 @@ export class BookAFlightPage implements OnInit {
     }
 
     this.router.navigateByUrl('/loader', navigationExtras)
+
 
   }
 
