@@ -15,9 +15,9 @@
     <span class="font-13 text-medium mt-8">Search and discover flights from 700+ airlines! *</span>
 
     <div class="flex flex-row mt-26">
-      <ion-button class="mr-8" fill="outline" size="small" (click)="changeTripType('one-way')" color="{{tripType == 'one-way' ? 'primary' : 'medium' }}">One-way</ion-button>
-      <ion-button class="mr-8" fill="outline" size="small" (click)="changeTripType('round-trip')" color="{{tripType == 'round-trip' ? 'primary' : 'medium' }}">Round-trip</ion-button>
-      <ion-button class="mr-8" fill="outline" size="small" (click)="changeTripType('multi-city')" color="{{tripType == 'multi-city' ? 'primary' : 'medium' }}">Multi-city</ion-button>
+      <ion-button class="mr-8" fill="outline" size="small" (click)="changeTripType('one-way')" color="{{tripType == 'one-way' ? 'primary' : 'medium' }}" [ngClass]="{'active-btn': tripType == 'one-way'}">One-way</ion-button>
+      <ion-button class="mr-8" fill="outline" size="small" (click)="changeTripType('round-trip')" color="{{tripType == 'round-trip' ? 'primary' : 'medium' }}" [ngClass]="{'active-btn': tripType == 'round-trip'}">Round-trip</ion-button>
+      <ion-button class="mr-8" fill="outline" size="small" (click)="changeTripType('multi-city')" color="{{tripType == 'multi-city' ? 'primary' : 'medium' }}" [ngClass]="{'active-btn': tripType == 'multi-city'}">Multi-city</ion-button>
     </div>
 
     <div class="flex flex-col flights-input">
@@ -40,13 +40,15 @@
         (click)="openFromToPage('to')"
       ></ion-input>
       
-      <ion-button class="interchange" (click)="changeFromToLocation()">Balikan</ion-button>
+      <ion-button size="small" class="interchange" (click)="changeFromToLocation()">
+        <span color="light" slot="icon-only" class="custom-icon-interchange"></span>
+      </ion-button>
 
     </div>
 
     <div class="flex flex-row date-input mt-8">
       <div class="flex flex-1 mr-2">
-        <ion-icon name="calendar-outline"></ion-icon>
+        <span class="custom-icon-calendar"></span>
         <ion-input 
           label="Departure" 
           [(ngModel)]="departureDate"
@@ -57,10 +59,11 @@
       </div>
 
       <div class="flex flex-1 ml-2">
-        <ion-icon name="calendar-outline" color="{{tripType == 'one-way' ? 'medium' : 'dark' }}"></ion-icon>
+        <span class="custom-icon-calendar " [ngClass]="{'disable-icon': tripType == 'one-way'}"></span>
         <ion-input 
           disabled="{{tripType == 'one-way'}}"
           label="Return" 
+          [(ngModel)]="returnDate"
           label-placement="floating"
           fill="outline"
           (click)="openPage('return-date')"

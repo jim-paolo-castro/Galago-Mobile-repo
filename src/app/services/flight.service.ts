@@ -17,4 +17,8 @@ export class FlightService {
     return this.http.get(`${this.globalSrvc.baseUrlForAutoFill}/api/get/airport-code-autofill?${query}`)
   }
 
+  searchFlight(data: any): Observable<any> {
+    return this.http.post(`${this.globalSrvc.baseUrl}/mystifly/flight/search`, data)
+  }
+
 }

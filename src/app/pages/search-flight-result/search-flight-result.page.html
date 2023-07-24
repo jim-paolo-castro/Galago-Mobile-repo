@@ -1,59 +1,104 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons color="primary" slot="start">
-      <ion-back-button color="primary"></ion-back-button>
+      <ion-button slot="icon-only" size="large" (click)="goBackToBookPage()">
+        <ion-icon name="arrow-back-outline"  color="primary"></ion-icon>
+      </ion-button>
+      <!-- <ion-back-button defaultHref="/book-a-flight" () color="primary"></ion-back-button> -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
+<div class="flex flex-col header-info">
+  <span class="font-28 text-weight-700">Select a Departure Flight</span>
+    <span class="font-17">{{origin.cityName}} to {{destination.cityName}}</span>
+
+    <div class="flex flex-row font-13 mt-10 mb-10">
+      <span>{{departureDate | date:'mediumDate'}} | </span>
+      <span class="ml-5"> {{passengers}} Passenger | </span>
+      <span class="ml-5 text-capitalize"> {{preferredClass}}</span>
+    </div>
+</div>
+
 
 <ion-content>
+  
   <div class="flex flex-col main-div">
-    <span class="font-28 text-weight-700">Select a Flight</span>
-    <span class="font-17">Manila to London</span>
 
-    <div class="flex flex-row font-13 mt-10">
-      <span>July 04, 2023 | </span>
-      <span class="ml-5"> 1 Passenger | </span>
-      <span class="ml-5"> Economy</span>
-    </div>
+    <div *ngIf="results.length > 0">
+      <div class="flex flex-col search-result-div"  *ngFor="let result of results">
+        <div class="flex flex-col stub mt-16">
 
-    <div class="flex flex-col search-result-div">
-      <div class="flex flex-col stub">
-
-        <div class="flex flex-row justify-between">
-          <span>Cebu Pacific Air</span>
-          <span>Best Price</span>
-        </div>
-
-        <div class="flex flex-row mt-15 justify-between">
-          <div class="flex flex-2 flex-col">
-            <span>Manila, Philippines</span>
-            <b>6:00</b>
-            <span>July, 2023</span>
+          <div class="flex flex-row justify-between">
+            <div class="flex flex-row airport">
+              <img src="assets/imgs/airline.png" class="Airline-Image airline-{{result.OriginDestinations[0].FlightSegment.MarketingCarriercode}}" alt="">
+              <span class="">{{result.OriginDestinations[0].FlightSegment.MarketingCarriercode}}</span>
+            </div>
+            <div class="flex label-tag">
+              <span class="flex tag">Best Price</span>
+            </div>
           </div>
-          <div class="flex flex-col flex-center  flex-3 airplane-center">
-            <hr>
-            <ion-icon name=""></ion-icon>
-            <span class="font-8">1hr 25 mins</span>
-          </div>
-          <div class="flex flex-right flex-2 flex-col">
-            <span>CEBU, Philippines</span>
-            <b>7:25</b>
-            <span>July, 2023</span>
-          </div>
-        </div>
 
-        <!-- detachable -->
-        <div class="flex flex-row mt-15 justify-between">
-          <div class="flex flex-row">
+          <div class="flex flex-row justify-between mt-15">
+            <span class="font-12">{{origin.cityName}}, {{origin.countryName}}</span>
+            <span class="font-12">{{destination.cityName}}, {{destination.countryName}}</span>
+          </div>
 
+          <div class="flex flex-row location-time justify-between">
+            <div class="flex flex-2 flex-col">
+              <b class="font-26">{{result.OriginDestinations[0].FlightSegment.DepartureDateTime | date: 'HH:mm'}}</b>
+              <!-- <span class="font-10">July 14, 2023</span> -->
+              <span class="font-10">{{result.OriginDestinations[0].FlightSegment.DepartureDateTime | date: 'mediumDate'}}</span>
+            </div>
+            <div class="flex flex-col flex-center  flex-3 airplane-center">
+              <hr>
+              <span class="custom-icon-airplane"></span>
+              <span class="font-10"> {{transformMinute(result.OriginDestinations[0].FlightSegment.JourneyDuration)}}</span>
+            </div>
+            <div class="flex text-right flex-2 flex-col">
+              <b class="font-26">{{result.OriginDestinations[0].FlightSegment.ArrivalDateTime | date: 'HH:mm'}}</b>
+              <!-- <span class="font-10">July 14, 2023</span> -->
+              <span class="font-10">{{result.OriginDestinations[0].FlightSegment.ArrivalDateTime | date: 'mediumDate'}}</span>
+
+            </div>
           </div>
-          <div class="flex">
-            P1,534.00
+
+          <div class="flex flex-row justify-between mt-8">
+            <div class="flex circle-cut-left"></div>
+            <div class="flex stub-cut">
+              <hr>
+            </div>
+            <div class="flex circle-cut-right" circle-cut></div>
           </div>
+
+          <!-- detachable -->
+          <div class="flex flex-row mt-5 special-deals justify-between">
+            <div class="flex flex-row self-center">
+              <span class="flex custom-icon-baggage"></span>
+              <span class="flex custom-icon-food"></span>
+              <div class="label-tag flex flex-row">
+                <div class="tag arrow-up"> <span class="custom-icon-skewed-arrow"></span> <b>100%</b></div>
+              </div>
+            </div>
+            <div class="flex price">
+              ${{result.FlightFares.PassengerFare[0].TotalFare}}
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
+
+    <div *ngIf="results.length == 0" class="flex justify-center flex-col empty-state">
+      <img class="flex self-center" src="assets/imgs/sad-galago.png">
+      <div class="flex self-center flex-col">
+        <span class="self-center font-20 mt-35"> Uh-oh! No results found </span>
+        <span class=" flex self-center text-center font-15 mt-10 sub-desc">Try different dates or destinations or contact our offline booking team for assistance and access to more exciting deals!</span>
+      </div>
+    </div>
+
+
   </div>
+
+
 </ion-content>

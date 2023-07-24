@@ -28,7 +28,7 @@ export class FlyingFromToPage implements OnInit {
 
   ngOnInit() {
     this.type = this.route.snapshot.queryParamMap.get('type');
-    
+    this.tripType = this.route.snapshot.queryParamMap.get('tripType');
   }
 
   ionViewWillEnter() {
@@ -55,7 +55,7 @@ export class FlyingFromToPage implements OnInit {
     this.showLoading()
 
     const params: NavigationExtras = {
-      queryParams: { type: 'to'}
+      queryParams: { type: 'to', tripType: this.tripType}
     }
     this.searchResult = []
 
@@ -72,7 +72,7 @@ export class FlyingFromToPage implements OnInit {
 
       } else { //destination (flying-to)
         this.storageSrvc.setItem('FLIGHT_DESTINATION', data)
-        this.router.navigate(['/select-dates']) 
+        this.router.navigate(['/select-dates'], {queryParams: {type : 'departure', tripType: this.tripType}}) 
       }
 
       this.airport = {}
@@ -92,7 +92,7 @@ export class FlyingFromToPage implements OnInit {
 
   searchAirport(e :any) {
     const value = e.detail.value
-    if(value.length > 4) {
+    if(value.length > 2) {
       console.log(e)
       this.isLoading = true
       this.flightSrvc.searchAirport(`airportSearch=${value}`).subscribe((res) => {

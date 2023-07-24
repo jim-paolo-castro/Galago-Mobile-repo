@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -14,27 +14,54 @@ export class SelectDatesPage implements OnInit {
 
   dateNow: String = new Date().toISOString();
   departureDate: any = ''
+  returnDate: any = ''
   selectedDate: any =''
   isLoading = false
+  type: any = ''
+  tripType:any  = ''
   
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private storageSrvc: StorageService) { }
 
   ngOnInit() {
-    const data: any = this.storageSrvc.getItem('DEPARTURE_DATE') 
-    this.selectedDate =  new Date(data).toISOString(); 
-    this.departureDate = this.selectedDate;
+    this.type = this.route.snapshot.queryParamMap.get('type');
+    this.tripType = this.route.snapshot.queryParamMap.get('tripType');
+
+    if (this.type == 'departure') {
+      const data: any = this.storageSrvc.getItem('DEPARTURE_DATE') 
+      this.selectedDate =  data ? new Date(data).toISOString() : this.dateNow; 
+      this.departureDate = this.selectedDate;
+    } else {
+      const data: any = this.storageSrvc.getItem('RETURN_DATE') 
+      this.selectedDate =  data ? new Date(data).toISOString() : this.dateNow; 
+      this.returnDate = this.selectedDate;
+      console.log("return", this.returnDate)
+    }
+    
   }
 
   dateChanged(e: any) {
     console.log(e)
-    this.departureDate = e;
+    if (this.type == 'departure') this.departureDate = e;
+    else this.returnDate = e
   }
 
   next() {
-    this.storageSrvc.setItem('DEPARTURE_DATE', this.departureDate)
-    this.router.navigate(['/passengers-input'])
+    if(this.type =='departure') {
+      this.storageSrvc.setItem('DEPARTURE_DATE', this.departureDate);
+      if(this.tripType == 'one-way') {
+        this.router.navigate(['/passengers-input'])
+      } else {
+        this.type = 'return'
+      }
+      
+    }
+    else {
+      this.storageSrvc.setItem('RETURN_DATE', this.returnDate)
+      this.router.navigate(['/passengers-input'])
+    }
   }
 
 }

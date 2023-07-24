@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage.service';
 import * as moment from 'moment'; 
+import { FlightService } from 'src/app/services/flight.service';
 
 @Component({
   selector: 'app-book-a-flight',
@@ -15,6 +16,7 @@ export class BookAFlightPage implements OnInit {
   flyingFrom = ''
   flyingTo = ''
   departureDate : any= ''
+  returnDate : any= ''
   travelers = ''
   preferredClass = ''
   flyingFromStorage = ''
@@ -22,6 +24,7 @@ export class BookAFlightPage implements OnInit {
 
   constructor(
     private router: Router,
+    private flightSrvc: FlightService,
     private storageSrvc: StorageService) { }
 
   ngOnInit() {
@@ -29,13 +32,13 @@ export class BookAFlightPage implements OnInit {
   }
 
   ionViewWillEnter(){ //look for saved data in localStorage
-    const keys = ['FLIGHT_ORIGIN', 'FLIGHT_DESTINATION', 'DEPARTURE_DATE', 'PASSENGERS', 'CABIN_PREFERENCE']
+    const keys = ['FLIGHT_ORIGIN', 'FLIGHT_DESTINATION', 'DEPARTURE_DATE', 'RETURN_DATE', 'PASSENGERS', 'CABIN_PREFERENCE', "TRIP_TYPE"]
     for (let i = 0; i < keys.length; i++) {
       const element = keys[i];
       const item = this.storageSrvc.getItem(element)
       if (item !== null) {
         let data:any;
-        if(element !== 'CABIN_PREFERENCE' && element !=='DEPARTURE_DATE') data = JSON.parse(item)
+        if(element !== 'CABIN_PREFERENCE' && element !=='DEPARTURE_DATE' && element !=='RETURN_DATE' && element !=='TRIP_TYPE') data = JSON.parse(item)
         else data = item
 
         switch (element) {
@@ -43,23 +46,33 @@ export class BookAFlightPage implements OnInit {
             this.flyingFromStorage = item
             this.flyingFrom = data.cityName + ' (' + data.cityCode + ')'
             break;
+
           case 'FLIGHT_DESTINATION':
             this.flyingToStorage = item
             this.flyingTo = data.cityName + ' (' + data.cityCode + ')'
             break;
+
           case 'DEPARTURE_DATE':
             this.departureDate = moment(data).format('MMM DD, YYYY')
             break;
-          case 'PASSENGERS':
 
+          case 'RETURN_DATE':
+            this.returnDate = moment(data).format('MMM DD, YYYY')
+            break;
+
+          case 'PASSENGERS':
             let str = data.ADT +  ' Adult'
             if(data.CHD > 0) str += ', ' + data.CHD + ' Child'
             if(data.INF > 0) str += ', ' + data.INF + ' Infant'
-
             this.travelers = str
             break;
+
           case 'CABIN_PREFERENCE':
               this.preferredClass = data
+              break;
+
+          case 'TRIP_TYPE':
+              this.tripType = data
               break;
 
           default:
@@ -72,6 +85,7 @@ export class BookAFlightPage implements OnInit {
 
   changeTripType(type: any) {
     this.tripType = type
+    this.storageSrvc.setItem("TRIP_TYPE", type)
   }
 
   changeFromToLocation(){
@@ -107,10 +121,10 @@ export class BookAFlightPage implements OnInit {
   openPage(page: string) {
     switch (page) {
       case "departure-date":
-        this.router.navigate(['/select-dates'])
+        this.router.navigate(['/select-dates'], { queryParams: { type: 'departure'}})
         break;
       case "return-date":
-        this.router.navigate(['/select-dates'])
+        if(this.tripType !== 'one-way') this.router.navigate(['/select-dates'],  { queryParams: { type: 'return'}})
         break;
       case "passengers": 
         this.router.navigate(['/passengers-input'])
@@ -125,16 +139,107 @@ export class BookAFlightPage implements OnInit {
   }
 
   search(){
+
     this.isLoading = true;
-    setTimeout(() => {
-      this.router.navigate(['/search-flight-result']);
-      this.isLoading = false
-    }, 2000);
+    const origin: any = JSON.parse(this.flyingFromStorage) 
+    const destination: any = JSON.parse(this.flyingToStorage)
+
+    // let dateOfDeparture  = this.departureDate 
+    
+    const data = {
+      
+      OriginDestinationInformations: this.getOriginDestinationInfo(origin, destination),
+      PassengerTypeQuantities: this.getTravelersToSubmit(),
+      TravelPreferences: {
+        MaxStopsQuantity: "All",
+        CabinPreference: this.getPreferredClass(),
+        Preferences: {
+          CabinClassPreference: {
+            CabinType: this.getPreferredClass(),
+            PreferenceLevel: "Restricted"
+          }
+        },
+        AirTripType: this.tripType == 'one-way' ? 'OneWay' : 'Circle'
+      }
+
+    }
+
+    console.log("The data to submit:", data)
+
+    // const details = { 
+    //   departureDate: this.departureDate,
+    //   passengers: this.getTravelersToSubmit(),
+    //   preferredClass:
+    //  }
+
+    const navigationExtras: NavigationExtras = {
+      state : data
+    }
+
+    this.router.navigateByUrl('/loader', navigationExtras)
+
   }
 
   inputsValid(){
     if (this.flyingFrom != '' && this.flyingFrom != '' && this.departureDate != '' && this.travelers != '' && this.preferredClass != '') return true
     else return false  
+  }
+
+  getTravelersToSubmit(){
+    
+    const savedTravelers: any = this.storageSrvc.getItem("PASSENGERS")
+    const travelers = JSON.parse(savedTravelers)
+    
+    let arr = []
+    if(travelers.ADT > 0) arr.push({ Code: "ADT", Quantity: (travelers.ADT).toString() })
+    if(travelers.CHD > 0) arr.push({ Code: "CHD", Quantity: (travelers.CHD).toString() })
+    if(travelers.INF > 0) arr.push({ Code: "INF", Quantity: (travelers.INF).toString() })
+
+    return arr
+  }
+
+  getPreferredClass() {
+    const preferrence: any = this.storageSrvc.getItem("CABIN_PREFERENCE")
+    let value = ''
+    switch (preferrence) {
+      case 'economy':
+        value =  "Y"
+        break;
+      
+      case 'business':
+        value =  "C"
+        break;
+
+      case 'first':
+        value =  "F"
+        break;
+
+      case 'premium-economy':
+        value =  "S"
+        break;
+    
+      default:
+        break;
+    }
+
+    return value
+
+  }
+
+  getOriginDestinationInfo(origin: any, destination: any){
+    let OriginDestinationInformations = [{
+      DepartureDateTime: moment(this.departureDate).format('YYYY/MM/DD'),
+      OriginLocationCode: origin.cityCode,
+      DestinationLocationCode: destination.cityCode
+    }]
+
+    if(this.tripType ==='round-trip') OriginDestinationInformations.push({
+      DepartureDateTime: moment(this.returnDate).format('YYYY/MM/DD'),
+      OriginLocationCode: destination.cityCode,
+      DestinationLocationCode: origin.cityCode
+    })
+
+    return OriginDestinationInformations
   }
 
 }

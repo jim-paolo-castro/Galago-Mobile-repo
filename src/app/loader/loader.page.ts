@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
+import { FlightService } from '../services/flight.service';
 
 @Component({
   selector: 'app-loader',
@@ -9,13 +10,27 @@ import { Router } from '@angular/router';
 export class LoaderPage implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private flightSrvc: FlightService,
   ) { }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.router.navigate(['/home'])
-    }, 3000);
+    const routerState = this.router.getCurrentNavigation()?.extras.state;
+    console.log(routerState);
+
+    this.flightSrvc.searchFlight(routerState).subscribe((res) => {
+      console.log("result", res)  
+
+      const navigationExtras: NavigationExtras = {
+        state : res
+      }
+
+      this.router.navigateByUrl('/search-flight-result', navigationExtras);
+    },
+    (err) => {
+      console.log("error", err)
+    })
+
   }
 
 }
