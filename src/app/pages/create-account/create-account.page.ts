@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { StorageService } from 'src/app/services/storage.service';
 
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const GP_EMAIL_REGEX = /^[a-zA-Z0-9_.+-]+@((nhs).(net)|(doctors).(org))/
@@ -30,7 +31,8 @@ export class CreateAccountPage implements OnInit {
     private userSrvc: UserService,
     private route: ActivatedRoute, 
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private storageSrvc: StorageService
     ) {
     
    }
@@ -118,7 +120,12 @@ export class CreateAccountPage implements OnInit {
     await this.userSrvc.createAccount(data).subscribe((res) => {
       this.isLoading = false
       console.log("resposne", res)
-      if(res.accessToken) this.router.navigate(['/home'])
+      
+      if(res.accessToken) {
+        this.storageSrvc.setItem("LOGIN_KEY", res.accessToken)
+        this.router.navigate(['/home'])
+      } 
+
     }, (err) => {
       this.isLoading = false;
       console.log("backend error", err)
