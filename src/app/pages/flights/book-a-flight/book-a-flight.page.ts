@@ -112,7 +112,7 @@ export class BookAFlightPage implements OnInit {
         this.router.navigate(['/select-dates'])
         break;
       case "return-date":
-        this.router.navigate(['/select-dates'])
+        if(this.tripType !== 'one-way') this.router.navigate(['/select-dates'])
         break;
       case "passengers": 
         this.router.navigate(['/passengers-input'])
