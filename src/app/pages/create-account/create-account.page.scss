@@ -105,3 +105,14 @@ ion-content{
     margin-right: 15px;
     font-weight: normal;
 }
+
+ion-input.error-password.has-value.sc-ion-input-md-h{
+  --border-color: var(--ion-color-danger);
+  --border-width: 1.5px;
+
+}
+
+ion-input.error-password div.label-text.sc-ion-input-md { 
+  color: var(--ion-color-danger);
+  font-size: 13px;
+}

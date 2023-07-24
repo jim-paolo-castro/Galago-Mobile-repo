@@ -22,7 +22,8 @@ export class CreateAccountPage implements OnInit {
   showPassword = false;
   showConfirmPassword = false;
   typeConfig = 'password';
-  typeConfigConfirm = 'password'
+  typeConfigConfirm = 'password';
+  validDate = true
 
 
   constructor(
@@ -122,6 +123,23 @@ export class CreateAccountPage implements OnInit {
       this.isLoading = false;
       console.log("backend error", err)
     })
+  }
+
+
+  calculateAgeValidity(e:any) { // birthday is a date
+    console.log(e)
+    const birthday: any = new Date(e.detail.value)
+    let ageDifMs = Date.now() - birthday;
+    let ageDate = new Date(ageDifMs); // miliseconds from epoch
+    console.log("agedate", ageDate)
+
+    const result = Math.abs(ageDate.getUTCFullYear() - 1970);
+    console.log("result", result)
+    if(result < 18) {
+      this.validDate = false
+      return false
+    }  else  this.validDate = true; return true
+
   }
 
 }

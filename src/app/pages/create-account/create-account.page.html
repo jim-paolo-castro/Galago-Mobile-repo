@@ -44,11 +44,17 @@
         max="2022-05-31T23:59:59"
         class="mt-24" 
         label="Birthday"
+        (ionChange)="calculateAgeValidity($event)"
         placeholder="(Jan 01, 1990)" 
         label-placement="floating"
+        [ngClass]="{'error-password' : calculateAgeValidity}"
         fill="outline" ></ion-input>
-        <span class="font-13 black-200-sans mt-10">To create an account, you need to be at least 18. Your birthday won’t ve shared with other people who use GalaGO! </span>
-
+      <span class="font-13 black-200-sans mt-10" *ngIf="validDate">To create an account, you need to be at least 18. Your birthday won’t ve shared with other people who use GalaGO! </span>
+      <span class="font-13 black-200-sans danger-text mt-10" *ngIf="!validDate" >
+        <ion-icon class="icon-identifier" name="alert-circle-outline"></ion-icon>
+        You need to be at least 18 years old.
+      </span>
+      
       <ion-input
         formControlName="email"
         class="mt-24 email-disabled" 
