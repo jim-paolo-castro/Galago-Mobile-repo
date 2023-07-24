@@ -15,16 +15,16 @@ export class SearchFlightResultPage implements OnInit {
   origin: any = {}
   destination: any = {}
 
-  results = ['one', 'two', "ad", "asd", "ad", "adasd", "asd"]
+  results:any = ['one', 'two', "ad", "asd", "ad", "adasd", "asd"]
   constructor(
     private router: Router,
     private storageSrvc: StorageService
   ) { }
 
   ngOnInit() {
-    const routerState = this.router.getCurrentNavigation()?.extras.state;
+    const routerState:any = this.router.getCurrentNavigation()?.extras.state;
     console.log("Data from loader", routerState)
-
+    this.results = routerState.Data;
     this.departureDate = this.storageSrvc.getItem("DEPARTURE_DATE")
 
     const x: any = this.storageSrvc.getItem("PASSENGERS")
@@ -42,8 +42,15 @@ export class SearchFlightResultPage implements OnInit {
     const destination: any = this.storageSrvc.getItem("FLIGHT_DESTINATION")
     this.destination = JSON.parse(destination)
 
-    
 
+
+  }
+
+
+  transformMinute(value: number): string {
+    let hours = Math.floor(value / 60);
+    let minutes = Math.floor(value % 60);
+    return hours + ' hr ' + minutes + ' mins';
   }
 
 }

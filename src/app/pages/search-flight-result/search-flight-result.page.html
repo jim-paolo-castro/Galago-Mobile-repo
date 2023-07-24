@@ -27,8 +27,8 @@
 
         <div class="flex flex-row justify-between">
           <div class="flex flex-row airport">
-             <img src="assets/imgs/cebu-pac-logo.png" alt="">
-             <span class="">Cebu Pacific Air</span>
+             <img src="assets/imgs/airline.png" class="Airline-Image airline-{{result.OriginDestinations[0].FlightSegment.MarketingCarriercode}}" alt="">
+             <span class="">{{result.OriginDestinations[0].FlightSegment.MarketingCarriercode}}</span>
           </div>
           <div class="flex label-tag">
             <span class="flex tag">Best Price</span>
@@ -36,23 +36,26 @@
         </div>
 
         <div class="flex flex-row justify-between mt-15">
-          <span class="font-12">Manila, Philippines</span>
-          <span class="font-12">CEBU, Philippines</span>
+          <span class="font-12">{{origin.cityName}}, {{origin.countryName}}</span>
+          <span class="font-12">{{destination.cityName}}, {{destination.countryName}}</span>
         </div>
 
         <div class="flex flex-row location-time justify-between">
           <div class="flex flex-2 flex-col">
-            <b class="font-26">06:00</b>
-            <span class="font-10">July 14, 2023</span>
+            <b class="font-26">{{result.OriginDestinations[0].FlightSegment.DepartureDateTime | date: 'HH:mm'}}</b>
+            <!-- <span class="font-10">July 14, 2023</span> -->
+            <span class="font-10">{{result.OriginDestinations[0].FlightSegment.DepartureDateTime | date: 'mediumDate'}}</span>
           </div>
           <div class="flex flex-col flex-center  flex-3 airplane-center">
             <hr>
             <span class="custom-icon-airplane"></span>
-            <span class="font-10">1hr 25 mins</span>
+            <span class="font-10"> {{transformMinute(result.OriginDestinations[0].FlightSegment.JourneyDuration)}}</span>
           </div>
           <div class="flex text-right flex-2 flex-col">
-            <b class="font-26">07:25</b>
-            <span class="font-10">July 14, 2023</span>
+            <b class="font-26">{{result.OriginDestinations[0].FlightSegment.ArrivalDateTime | date: 'HH:mm'}}</b>
+            <!-- <span class="font-10">July 14, 2023</span> -->
+            <span class="font-10">{{result.OriginDestinations[0].FlightSegment.ArrivalDateTime | date: 'mediumDate'}}</span>
+
           </div>
         </div>
 
@@ -74,7 +77,7 @@
             </div>
           </div>
           <div class="flex price">
-            P1,534.00
+            ${{result.FlightFares.PassengerFare[0].TotalFare}}
           </div>
         </div>
 
