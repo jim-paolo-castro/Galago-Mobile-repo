@@ -47,7 +47,7 @@
         (ionChange)="calculateAgeValidity($event)"
         placeholder="(Jan 01, 1990)" 
         label-placement="floating"
-        [ngClass]="{'error-password' : calculateAgeValidity}"
+        [ngClass]="validDate ? 'clear-valid' : 'error-password'"
         fill="outline" ></ion-input>
       <span class="font-13 black-200-sans mt-10" *ngIf="validDate">To create an account, you need to be at least 18. Your birthday won’t ve shared with other people who use GalaGO! </span>
       <span class="font-13 black-200-sans danger-text mt-10" *ngIf="!validDate" >

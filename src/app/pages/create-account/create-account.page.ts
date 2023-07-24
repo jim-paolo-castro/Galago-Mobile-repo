@@ -122,7 +122,7 @@ export class CreateAccountPage implements OnInit {
       console.log("resposne", res)
       
       if(res.accessToken) {
-        this.storageSrvc.setItem("LOGIN_KEY", res.accessToken)
+        this.storageSrvc.setItem("LOGIN_KEY", `Bearer ${res.accessToken}`)
         this.router.navigate(['/home'])
       } 
 
