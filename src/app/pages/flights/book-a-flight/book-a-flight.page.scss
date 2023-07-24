@@ -41,8 +41,8 @@
 
   .has-value.sc-ion-input-md-h{ //value of input  
     --color: var(--ion-black-100);
-    --placeholder-color: red;
-    --highlight-color-valid: red;
+    // --placeholder-color: red;
+    // --highlight-color-valid: red;
     // .label-text-wrapper {
     // }
   }
@@ -90,4 +90,13 @@ ion-button{
 .footer-btn{
   position:absolute;
   bottom: 10;
+}
+
+.active-btn{
+  background-color: #BFFAFF;
+  border-radius: 12px;
+}
+
+.date-input span.disable-icon{
+  color: var(--ion-black-300);
 }

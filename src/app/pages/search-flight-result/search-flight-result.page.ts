@@ -42,7 +42,7 @@ export class SearchFlightResultPage implements OnInit {
     const destination: any = this.storageSrvc.getItem("FLIGHT_DESTINATION")
     this.destination = JSON.parse(destination)
 
-
+    
 
   }
 
