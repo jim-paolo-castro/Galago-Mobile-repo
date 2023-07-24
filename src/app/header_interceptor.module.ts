@@ -16,6 +16,7 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
         'Accept': '*/*',
         'Authorization': TOKEN_KEY ? TOKEN_KEY : '',
         'Content-Type': 'application/json',
+        'Cookie': 'connect.sid=s%3Ao8gOdMTnBdrS2zMSHDuvaj85arVIjAGM.97OE5FjHI4s9vU8%2B6MAjot5WE5MrYYRZLe4i8csiwHE'
       })
 
       const dupReq = req.clone({ headers });

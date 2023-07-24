@@ -24,8 +24,22 @@ ion-content {
     border-radius: 12px;
   }
 
+  .empty-state{
+    height: 80%;
+    img {
+       width: auto;
+       height: 100px;
+       margin-top: 120px;
+    }
+  }
+
   .search-result-div{
     background-color: #F7F7F7;
+  }
+
+  .sub-desc{
+    width: 90%;
+    color: var(--ion-black-200)
   }
 
   .label-tag{

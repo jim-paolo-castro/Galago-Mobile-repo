@@ -42,15 +42,26 @@ export class SearchFlightResultPage implements OnInit {
     const destination: any = this.storageSrvc.getItem("FLIGHT_DESTINATION")
     this.destination = JSON.parse(destination)
 
-
-
   }
 
 
   transformMinute(value: number): string {
     let hours = Math.floor(value / 60);
     let minutes = Math.floor(value % 60);
-    return hours + ' hr ' + minutes + ' mins';
+    let min = minutes > 0 ? minutes + ' mins' : ''
+    let hr = hours > 0 ? this.getHour(hours, minutes) : '' 
+    return hr + ' ' + min;
   }
 
+  getHour(hours: any, minutes: any) {
+    let dataHour = ''
+    if(hours > 1 && minutes == 0) dataHour = hours + ' hours'
+    else if(hours > 1 && minutes > 0) dataHour = hours + ' hrs'
+    else if(hours < 2 && minutes == 0) dataHour = hours + ' hour'
+    return dataHour
+  }
+
+  goBackToBookPage() {
+    this.router.navigate(['/book-a-flight'])
+  }
 }

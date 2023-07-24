@@ -16,6 +16,7 @@ export class BookAFlightPage implements OnInit {
   flyingFrom = ''
   flyingTo = ''
   departureDate : any= ''
+  returnDate : any= ''
   travelers = ''
   preferredClass = ''
   flyingFromStorage = ''
@@ -31,13 +32,13 @@ export class BookAFlightPage implements OnInit {
   }
 
   ionViewWillEnter(){ //look for saved data in localStorage
-    const keys = ['FLIGHT_ORIGIN', 'FLIGHT_DESTINATION', 'DEPARTURE_DATE', 'PASSENGERS', 'CABIN_PREFERENCE']
+    const keys = ['FLIGHT_ORIGIN', 'FLIGHT_DESTINATION', 'DEPARTURE_DATE', 'RETURN_DATE', 'PASSENGERS', 'CABIN_PREFERENCE', "TRIP_TYPE"]
     for (let i = 0; i < keys.length; i++) {
       const element = keys[i];
       const item = this.storageSrvc.getItem(element)
       if (item !== null) {
         let data:any;
-        if(element !== 'CABIN_PREFERENCE' && element !=='DEPARTURE_DATE') data = JSON.parse(item)
+        if(element !== 'CABIN_PREFERENCE' && element !=='DEPARTURE_DATE' && element !=='RETURN_DATE' && element !=='TRIP_TYPE') data = JSON.parse(item)
         else data = item
 
         switch (element) {
@@ -45,23 +46,33 @@ export class BookAFlightPage implements OnInit {
             this.flyingFromStorage = item
             this.flyingFrom = data.cityName + ' (' + data.cityCode + ')'
             break;
+
           case 'FLIGHT_DESTINATION':
             this.flyingToStorage = item
             this.flyingTo = data.cityName + ' (' + data.cityCode + ')'
             break;
+
           case 'DEPARTURE_DATE':
             this.departureDate = moment(data).format('MMM DD, YYYY')
             break;
-          case 'PASSENGERS':
 
+          case 'RETURN_DATE':
+            this.returnDate = moment(data).format('MMM DD, YYYY')
+            break;
+
+          case 'PASSENGERS':
             let str = data.ADT +  ' Adult'
             if(data.CHD > 0) str += ', ' + data.CHD + ' Child'
             if(data.INF > 0) str += ', ' + data.INF + ' Infant'
-
             this.travelers = str
             break;
+
           case 'CABIN_PREFERENCE':
               this.preferredClass = data
+              break;
+
+          case 'TRIP_TYPE':
+              this.tripType = data
               break;
 
           default:
@@ -74,6 +85,7 @@ export class BookAFlightPage implements OnInit {
 
   changeTripType(type: any) {
     this.tripType = type
+    this.storageSrvc.setItem("TRIP_TYPE", type)
   }
 
   changeFromToLocation(){
@@ -109,10 +121,10 @@ export class BookAFlightPage implements OnInit {
   openPage(page: string) {
     switch (page) {
       case "departure-date":
-        this.router.navigate(['/select-dates'])
+        this.router.navigate(['/select-dates'], { queryParams: { type: 'departure'}})
         break;
       case "return-date":
-        if(this.tripType !== 'one-way') this.router.navigate(['/select-dates'])
+        if(this.tripType !== 'one-way') this.router.navigate(['/select-dates'],  { queryParams: { type: 'return'}})
         break;
       case "passengers": 
         this.router.navigate(['/passengers-input'])
@@ -129,19 +141,14 @@ export class BookAFlightPage implements OnInit {
   search(){
 
     this.isLoading = true;
-    const origin = JSON.parse(this.flyingFromStorage) 
-    const destination = JSON.parse(this.flyingToStorage)
+    const origin: any = JSON.parse(this.flyingFromStorage) 
+    const destination: any = JSON.parse(this.flyingToStorage)
 
-    let dateOfDeparture  = this.departureDate 
+    // let dateOfDeparture  = this.departureDate 
+    
     const data = {
       
-      OriginDestinationInformations: [
-        {
-          DepartureDateTime: moment(this.departureDate).format('YYYY/MM/DD'),
-          OriginLocationCode: origin.cityCode,
-          DestinationLocationCode: destination.cityCode
-        }
-      ],
+      OriginDestinationInformations: this.getOriginDestinationInfo(origin, destination),
       PassengerTypeQuantities: this.getTravelersToSubmit(),
       TravelPreferences: {
         MaxStopsQuantity: "All",
@@ -152,7 +159,7 @@ export class BookAFlightPage implements OnInit {
             PreferenceLevel: "Restricted"
           }
         },
-        AirTripType: "OneWay"
+        AirTripType: this.tripType == 'one-way' ? 'OneWay' : 'Circle'
       }
 
     }
@@ -217,6 +224,22 @@ export class BookAFlightPage implements OnInit {
 
     return value
 
+  }
+
+  getOriginDestinationInfo(origin: any, destination: any){
+    let OriginDestinationInformations = [{
+      DepartureDateTime: moment(this.departureDate).format('YYYY/MM/DD'),
+      OriginLocationCode: origin.cityCode,
+      DestinationLocationCode: destination.cityCode
+    }]
+
+    if(this.tripType ==='round-trip') OriginDestinationInformations.push({
+      DepartureDateTime: moment(this.returnDate).format('YYYY/MM/DD'),
+      OriginLocationCode: destination.cityCode,
+      DestinationLocationCode: origin.cityCode
+    })
+
+    return OriginDestinationInformations
   }
 
 }

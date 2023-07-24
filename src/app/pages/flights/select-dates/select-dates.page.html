@@ -9,12 +9,14 @@
 
 <ion-content>
   <div class="flex flex-col main-div">
-    <span class="font-28 text-weight-700">Select Dates</span>
+    <span class="font-28 text-weight-700">Select Date</span>
 
     <div class="flex flex-col flex-center date-preview mt-12">
-      <span class="font-13">Departure</span>
-      <span class="font-16 mt-5" *ngIf="departureDate !== ''"> {{departureDate | date }}</span>
-      <span class="text-medium font-16 mt-5" *ngIf="departureDate ==''"> MMM DD, YYYY</span>
+      <span class="font-13 text-capitalize">{{type}}</span>
+      <span class="font-16 mt-5" *ngIf="departureDate !== '' && type =='departure' "> {{departureDate | date }}</span>
+      <span class="font-16 mt-5" *ngIf="returnDate !== '' && type =='return' "> {{returnDate | date }}</span>
+      <span class="text-medium font-16 mt-5" *ngIf="departureDate =='' && type =='departure' "> MMM DD, YYYY</span>
+      <span class="text-medium font-16 mt-5" *ngIf="returnDate =='' && type =='return' "> MMM DD, YYYY</span>
     </div>
 
     <ion-datetime class="mt-20 calendar-div"  [(ngModel)]="selectedDate" #datetime presentation="date" [min]="dateNow" (ionChange)="dateChanged(datetime.value)"></ion-datetime>

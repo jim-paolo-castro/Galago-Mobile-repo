@@ -63,9 +63,10 @@
         <ion-input 
           disabled="{{tripType == 'one-way'}}"
           label="Return" 
+          [(ngModel)]="returnDate"
           label-placement="floating"
           fill="outline"
-          (tap)="openPage('return-date')"
+          (click)="openPage('return-date')"
         ></ion-input>
       </div>
     </div>
