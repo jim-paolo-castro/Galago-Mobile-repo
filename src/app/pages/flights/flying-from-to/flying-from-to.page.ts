@@ -92,7 +92,7 @@ export class FlyingFromToPage implements OnInit {
 
   searchAirport(e :any) {
     const value = e.detail.value
-    if(value.length > 4) {
+    if(value.length > 2) {
       console.log(e)
       this.isLoading = true
       this.flightSrvc.searchAirport(`airportSearch=${value}`).subscribe((res) => {
