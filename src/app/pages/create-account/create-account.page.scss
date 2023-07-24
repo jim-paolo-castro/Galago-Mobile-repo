@@ -45,7 +45,7 @@ ion-content{
 
   ion-select.has-value{ 
     --color: black;
-    --border-color:  var(--ion-color-primary);
+    // --border-color:  var(--ion-color-primary);
     --border-width: 1.5px;
   }
 
@@ -55,7 +55,7 @@ ion-content{
   }
 
   ion-input.error-password.has-value.sc-ion-input-md-h{
-    --border-color: var(--ion-color-danger);
+    // --border-color: var(--ion-color-danger);
     --border-width: 1.5px;
   
   }
@@ -69,6 +69,7 @@ ion-content{
     --color: #adadad;
     font-size: 13px;
     font-weight: 100;
+    --highlight-color-valid: var(--ion-color-primary);
   }
   
   .has-value.sc-ion-input-md-h{
@@ -111,6 +112,13 @@ ion-input.error-password.has-value.sc-ion-input-md-h{
   --border-width: 1.5px;
 
 }
+
+ion-input.clear-valid.has-value.sc-ion-input-md-h{
+  --border-color: var(--ion-color-primary);
+  --border-width: 1.5px;
+
+}
+
 
 ion-input.error-password div.label-text.sc-ion-input-md { 
   color: var(--ion-color-danger);

@@ -11,14 +11,17 @@
   <div class="flex flex-col main-div">
     <span class="font-28 text-weight-700">Flying {{type}}</span>
 
-    <ion-input 
-      type="search"
-      class="for-search mt-17" 
-      label="Country, city or airport" 
-      label-placement="floating"
-      [(ngModel)]="location"
-      (ionInput)="searchAirport($event)"
-      fill="outline" ></ion-input>
+    <div>
+      <span></span>
+      <ion-input 
+        type="search"
+        class="for-search mt-17" 
+        label="Country, city or airport" 
+        label-placement="floating"
+        [(ngModel)]="location"
+        (ionInput)="searchAirport($event)"
+        fill="outline" ></ion-input>
+    </div>
 
       <!-- <span class="font-12 mt-24">Nearby Airports</span> -->
 
