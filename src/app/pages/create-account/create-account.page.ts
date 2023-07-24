@@ -117,7 +117,7 @@ export class CreateAccountPage implements OnInit {
     await this.userSrvc.createAccount(data).subscribe((res) => {
       this.isLoading = false
       console.log("resposne", res)
-      if(res.accessToken) this.router.navigate(['/loader'])
+      if(res.accessToken) this.router.navigate(['/home'])
     }, (err) => {
       this.isLoading = false;
       console.log("backend error", err)
