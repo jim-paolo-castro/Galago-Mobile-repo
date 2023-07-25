@@ -36,12 +36,14 @@ export class SearchFlightResultPage implements OnInit {
 
     this.preferredClass = this.storageSrvc.getItem("CABIN_PREFERENCE")
 
+  }
+
+  ionViewWillEnter(){
     const origin: any = this.storageSrvc.getItem("FLIGHT_ORIGIN")
     this.origin = JSON.parse(origin)
 
     const destination: any = this.storageSrvc.getItem("FLIGHT_DESTINATION")
     this.destination = JSON.parse(destination)
-
   }
 
 
