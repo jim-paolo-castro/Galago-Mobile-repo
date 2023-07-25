@@ -29,9 +29,22 @@ export class BookAFlightPage implements OnInit {
 
   ngOnInit() {
     console.log("ngOninit fires!!!!")
+    const prefferedClass = this.storageSrvc.getItem("CABIN_PREFERENCE");
+    const passengers = this.storageSrvc.getItem("PASSENGERS");
+
+    this.setDefaultValue(prefferedClass, passengers);
+  }
+
+  private setDefaultValue(prefferedClass: string | null, passengers: string | null) {
+    if (!prefferedClass) this.storageSrvc.setItem("CABIN_PREFERENCE", 'economy');
+    if (!passengers) {
+      const data = { ADT: 1, CHD: 0, INF: 0 };
+      this.storageSrvc.setItem("PASSENGERS", JSON.stringify(data));
+    }
   }
 
   ionViewWillEnter(){ //look for saved data in localStorage
+    console.log("viewwillenter")
     const keys = ['FLIGHT_ORIGIN', 'FLIGHT_DESTINATION', 'DEPARTURE_DATE', 'RETURN_DATE', 'PASSENGERS', 'CABIN_PREFERENCE', "TRIP_TYPE"]
     for (let i = 0; i < keys.length; i++) {
       const element = keys[i];
