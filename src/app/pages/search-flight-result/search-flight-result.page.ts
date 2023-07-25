@@ -57,6 +57,7 @@ export class SearchFlightResultPage implements OnInit {
     let dataHour = ''
     if(hours > 1 && minutes == 0) dataHour = hours + ' hours'
     else if(hours > 1 && minutes > 0) dataHour = hours + ' hrs'
+    else if(hours > 0 && minutes > 0) dataHour = hours + ' hr'
     else if(hours < 2 && minutes == 0) dataHour = hours + ' hour'
     return dataHour
   }
