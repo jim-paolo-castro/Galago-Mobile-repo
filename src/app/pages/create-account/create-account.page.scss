@@ -44,7 +44,7 @@ ion-content{
   }
 
   ion-select.has-value{ 
-    --color: black;
+    // --color: black;
     // --border-color:  var(--ion-color-primary);
     --border-width: 1.5px;
   }
@@ -73,6 +73,13 @@ ion-content{
   }
   
   .has-value.sc-ion-input-md-h{
+    --color: black;
+    --border-color:  var(--ion-color-primary);
+    --border-width: 1.5px;
+  
+  }
+
+  .has-value.sc-ion-select-md-h{
     --color: black;
     --border-color:  var(--ion-color-primary);
     --border-width: 1.5px;

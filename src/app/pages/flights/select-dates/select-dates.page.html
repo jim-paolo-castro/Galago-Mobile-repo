@@ -15,11 +15,9 @@
       <span class="font-13 text-capitalize">{{type}}</span>
       <span class="font-16 mt-5" *ngIf="departureDate !== '' && type =='departure' "> {{departureDate | date }}</span>
       <span class="font-16 mt-5" *ngIf="returnDate !== '' && type =='return' "> {{returnDate | date }}</span>
-      <span class="text-medium font-16 mt-5" *ngIf="departureDate =='' && type =='departure' "> MMM DD, YYYY</span>
-      <span class="text-medium font-16 mt-5" *ngIf="returnDate =='' && type =='return' "> MMM DD, YYYY</span>
     </div>
 
-    <ion-datetime class="mt-20 calendar-div"  [(ngModel)]="selectedDate" #datetime presentation="date" [min]="dateNow" (ionChange)="dateChanged(datetime.value)"></ion-datetime>
+    <ion-datetime class="mt-20 calendar-div"  [(ngModel)]="selectedDate" #datetime presentation="date" [min]="minimumDate" (ionChange)="dateChanged(datetime.value)"></ion-datetime>
 
     <!-- <ion-calendar [format]="'YYYY-MM-DD'"> </ion-calendar> -->
   </div>
