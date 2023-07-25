@@ -121,10 +121,10 @@ export class BookAFlightPage implements OnInit {
   openPage(page: string) {
     switch (page) {
       case "departure-date":
-        this.router.navigate(['/select-dates'], { queryParams: { type: 'departure'}})
+        this.router.navigate(['/select-dates'], { queryParams: { type: 'departure', tripType: this.tripType}})
         break;
       case "return-date":
-        if(this.tripType !== 'one-way') this.router.navigate(['/select-dates'],  { queryParams: { type: 'return'}})
+        if(this.tripType !== 'one-way') this.router.navigate(['/select-dates'],  { queryParams: { type: 'return', tripType: this.tripType}})
         break;
       case "passengers": 
         this.router.navigate(['/passengers-input'])
