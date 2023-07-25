@@ -247,14 +247,14 @@ export class BookAFlightPage implements OnInit {
   getOriginDestinationInfo(origin: any, destination: any){
     let OriginDestinationInformations = [{
       DepartureDateTime: moment(this.departureDate).format('YYYY/MM/DD'),
-      OriginLocationCode: origin.cityCode,
-      DestinationLocationCode: destination.cityCode
+      OriginLocationCode: origin.airportCode,
+      DestinationLocationCode: destination.airportCode
     }]
 
     if(this.tripType ==='round-trip') OriginDestinationInformations.push({
       DepartureDateTime: moment(this.returnDate).format('YYYY/MM/DD'),
-      OriginLocationCode: destination.cityCode,
-      DestinationLocationCode: origin.cityCode
+      OriginLocationCode: destination.airportCode,
+      DestinationLocationCode: origin.airportCode
     })
 
     return OriginDestinationInformations
