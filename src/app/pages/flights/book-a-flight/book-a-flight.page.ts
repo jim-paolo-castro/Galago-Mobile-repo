@@ -86,6 +86,10 @@ export class BookAFlightPage implements OnInit {
   changeTripType(type: any) {
     this.tripType = type
     this.storageSrvc.setItem("TRIP_TYPE", type)
+    if(type === 'one-way') {
+      this.returnDate = ''
+      this.storageSrvc.removeItem("RETURN_DATE")
+    } 
   }
 
   changeFromToLocation(){

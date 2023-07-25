@@ -14,4 +14,8 @@ export class StorageService {
   getItem(itemName: string) {
    return localStorage.getItem(itemName)
   }
+
+  removeItem(itemName: string){
+    localStorage.removeItem(itemName)
+  }
 }
