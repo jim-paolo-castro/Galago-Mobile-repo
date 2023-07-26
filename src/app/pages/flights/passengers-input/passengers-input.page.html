@@ -18,11 +18,11 @@
           <span class="font-13">Ages 18 and above</span>
         </div>
         <div class="flex flex-1 flex-row">
-          <ion-button size="medium" fill="clear" (click)="decrement('adults')" [disabled]="adults == 0" [color]="adults == 0 ? 'medium': 'primary' ">
+          <ion-button size="medium" fill="clear" (click)="decrement('adults')" [disabled]="adults <= 0 || totalPassengers == 1" [color]="adults <= 0 || totalPassengers == 1 ? 'medium': 'primary' ">
             <ion-icon class="font-25" name="remove-circle-outline"></ion-icon>
           </ion-button>
-            <span class="mt-10 font-20">{{adults}}</span>
-          <ion-button size="medium" fill="clear" (click)="increment('adults')" [disabled]="adults == 9" [color]="adults == 9 ? 'medium': 'primary' ">
+            <span class="mt-10 font-20 counter">{{adults}}</span>
+          <ion-button size="medium" fill="clear" (click)="increment('adults')" [disabled]="totalPassengers >= 9" [color]="totalPassengers < 9 ? 'primary': 'medium'">
             <ion-icon class="font-25" name="add-circle-outline"></ion-icon>
           </ion-button>
         </div>
@@ -37,8 +37,8 @@
           <ion-button size="medium" fill="clear" (click)="decrement('children')" [disabled]="children == 0 " [color]="children == 0 ? 'medium': 'primary' ">
             <ion-icon class="font-25" name="remove-circle-outline"></ion-icon>
           </ion-button>
-            <span class="mt-10 font-20">{{children}}</span>
-          <ion-button size="medium" fill="clear" (click)="increment('children')" [disabled]="children == 9" [color]="children == 9 ? 'medium': 'primary' ">
+            <span class="mt-10 font-20 counter">{{children}}</span>
+          <ion-button size="medium" fill="clear" (click)="increment('children')" [disabled]="totalPassengers >= 9" [color]="totalPassengers < 9  ? 'primary': 'medium'">
             <ion-icon class="font-25" name="add-circle-outline"></ion-icon>
           </ion-button>
         </div>
@@ -53,8 +53,8 @@
           <ion-button size="medium" fill="clear" (click)="decrement('infants')" [disabled]="infants == 0" [color]="infants == 0 ? 'medium': 'primary' ">
             <ion-icon class="font-25" name="remove-circle-outline"></ion-icon>
           </ion-button>
-            <span class="mt-10 font-20">{{infants}}</span>
-          <ion-button size="medium" fill="clear" (click)="increment('infants')" [disabled]="infants == 9" [color]="infants == 9 ? 'medium': 'primary' ">
+            <span class="mt-10 font-20 counter">{{infants}}</span>
+          <ion-button size="medium" fill="clear" (click)="increment('infants')" [disabled]="totalPassengers >= 9" [color]="totalPassengers < 9 ? 'primary': 'medium'">
             <ion-icon class="font-25" name="add-circle-outline"></ion-icon>
           </ion-button>
         </div>

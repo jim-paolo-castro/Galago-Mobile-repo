@@ -13,11 +13,11 @@ export class PassengersInputPage implements OnInit {
   children = 0
   infants = 0
   isLoading = false
+  totalPassengers = 1
 
   constructor(
     private router: Router,
     private storageSrvc: StorageService,
-    private route: ActivatedRoute
     ) { }
 
   ngOnInit() {
@@ -53,6 +53,7 @@ export class PassengersInputPage implements OnInit {
       default:
         break;
     }
+    this.updateTotalPassenger()
   }
 
   increment(type: any) {
@@ -72,6 +73,14 @@ export class PassengersInputPage implements OnInit {
       default:
         break;
     }
+
+    this.updateTotalPassenger()
+
+  }
+
+  updateTotalPassenger(){
+    this.totalPassengers = this.adults + this.children + this.infants;
+    console.log("passenges", this.totalPassengers)
   }
 
 
