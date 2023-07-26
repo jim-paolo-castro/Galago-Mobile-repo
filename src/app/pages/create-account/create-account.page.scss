@@ -66,14 +66,14 @@ ion-content{
   }
   
   .sc-ion-input-md-h{
-    // --color: #adadad;
+    --color: #adadad;
     font-size: 13px;
     font-weight: 100;
     --highlight-color-valid: var(--ion-color-primary);
   }
   
   .has-value.sc-ion-input-md-h{
-    // --color: var(--ion-black-100);
+    --color: var(--ion-black-100);
     --border-color:  var(--ion-color-primary);
     --border-width: 1.5px;
   
