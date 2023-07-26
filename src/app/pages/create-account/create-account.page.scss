@@ -25,7 +25,7 @@ ion-content{
     --border-color:#d9d9d9;
     --border-radius: 20px;
     --border-width: 1px;
-    --highlight-color-valid: var(--ion-color-primary);
+    // --highlight-color-valid: var(--ion-color-primary);
     --placeholder-color: #d9d9d9;
 
     // --placeholder-opacity: 0.5;
@@ -33,18 +33,18 @@ ion-content{
 
   ion-select{ //country code
     --background: #fff;
-    --border-color:#d9d9d9;
-    --border-radius: 20px;
+    // --border-color:#d9d9d9;
+    --border-radius: 12px;
     --border-width: 1px;
     --highlight-color-valid: var(--ion-color-primary);
-    --placeholder-color: #d9d9d9;
+    // --placeholder-color: #ddd;
     font-size: 13px;
-    color: #d9d9d9;
+    color: #adadad;
     // --placeholder-opacity: 0.5;
   }
 
   ion-select.has-value{ 
-    // --color: black;
+    color: var(--ion-black-100);
     // --border-color:  var(--ion-color-primary);
     --border-width: 1.5px;
   }
@@ -61,30 +61,24 @@ ion-content{
   }
   
   ion-input div.label-text.sc-ion-input-md { 
-    color: #d9d9d9;
+    // color: #d9d9d9;
     font-size: 13px;
   }
   
   .sc-ion-input-md-h{
-    --color: #adadad;
+    // --color: #adadad;
     font-size: 13px;
     font-weight: 100;
     --highlight-color-valid: var(--ion-color-primary);
   }
   
   .has-value.sc-ion-input-md-h{
-    --color: black;
+    // --color: var(--ion-black-100);
     --border-color:  var(--ion-color-primary);
     --border-width: 1.5px;
   
   }
 
-  .has-value.sc-ion-select-md-h{
-    --color: black;
-    --border-color:  var(--ion-color-primary);
-    --border-width: 1.5px;
-  
-  }
 
   .black-200-sans{
     color: #adadad;
@@ -130,4 +124,14 @@ ion-input.clear-valid.has-value.sc-ion-input-md-h{
 ion-input.error-password div.label-text.sc-ion-input-md { 
   color: var(--ion-color-danger);
   font-size: 13px;
+}
+
+
+.has-focus .input-fill-outline.input-label-placement-stacked.sc-ion-input-md-h .label-text-wrapper.sc-ion-input-md {
+  -webkit-transform: translateY(-10%) scale(0.50);
+  transform: translateY(-10%) scale(0.50);
+}
+
+ion-input.custom.has-value.sc-ion-input-md-h .label-text-wrapper.sc-ion-input-md {
+  --color: var(--ion-color-primary)
 }
