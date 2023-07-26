@@ -116,7 +116,14 @@ export class FlyingFromToPage implements OnInit {
         this.isLoading = false;
         
       })
+    } else if(value.length < 3) {
+      this.searchResult = []
     }
+  }
+
+  clearSearch(){
+    this.searchResult = []
+    this.location = ''
   }
 
 }
